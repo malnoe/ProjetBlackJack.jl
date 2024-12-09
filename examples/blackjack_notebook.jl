@@ -28,7 +28,7 @@ end
 
 # ╔═╡ 37dc8fd4-ec5b-40a8-a01b-87e2cac657d7
 begin
-	svgp = PackageForPlutoJack.interaction()
+	svgp = ProjetBlackJack.interaction()
 @bind etat @htl(
 """
 <div>

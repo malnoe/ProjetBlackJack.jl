@@ -1,6 +1,5 @@
 from carte import *
 from deck import *
-import keyboard
 
 def jeu():
     # Instancier un deck de black jack
@@ -34,7 +33,8 @@ def jeu():
         print("Do you want to take a new card ? Press Y or N.")
         
         while True:
-            if (keyboard.read_key() == "y") or (keyboard.read_key() == "Y") :
+            input_player = input("")
+            if (input_player == "y") or (input_player == "Y") :
                 print("You want a new card !")
                 take_a_card(blackjack_deck,player_hand)
                 display_hand(player_hand,"player")
@@ -47,7 +47,7 @@ def jeu():
                     return
                 
                 break
-            elif (keyboard.read_key() == "n") or (keyboard.read_key() == "N") :
+            elif (input_player == "n") or (input_player == "N") :
                 print("Ok, no new card...")
                 refus = True
                 break

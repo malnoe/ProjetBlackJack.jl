@@ -21,7 +21,7 @@ begin
 	import Pkg
 	Pkg.activate("..")
 	using Vizagrams, PlutoUI, HypertextLiteral
-	using PackageForPlutoJack
+	using ProjetBlackJack
 	game = initialize_game()
 	nothing
 end

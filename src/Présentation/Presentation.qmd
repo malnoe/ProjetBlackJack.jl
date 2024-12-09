@@ -1,0 +1,132 @@
+---
+title: "Projets Julia/R/Python"
+author: "EL KHOURY Danielle, MALNOE Garance, RAVIER Lancelot"
+format:
+  revealjs:
+    logo: images/uga_logo.png
+    css: assets/styles.css
+    resources: images
+    header-includes: |
+      <script src="assets/custom.js" type="application/javascript"></script>
+
+---
+
+# Jeu Blackjack dans Julia
+## Règles du jeu
+- 6 jeux de carte sont définis et mélangés (52 cartes, pas de joker)  
+- Le joueur appuie sur un bouton pour démarrer la partie  
+- Le programme distribue deux cartes retournées au joueur  
+- Le programme distribue une carte retournée à l'ordinateur  
+- Les points sont calculés et affichés au joueur  
+- Le joueur doit choisir entre laisser l'ordinateur jouer ou retirer une carte  
+
+## Option 1 du joueur
+- *S'il décide de tirer une carte :
+    - Si le nombre de points est = 21, il a gagné et le jeu s'arrette  
+    - Si le nombre de points est >21, il a perdu et le jeu s'arrette  
+    - Si le nombre de points inferieur à 21, il peut décider de rejouer* ou de s'arretter**
+
+## Option 2 du joueur
+- **S'il décide de s'arretter, l'ordinateur va retirer une carte :
+    - Si il tombe sur 21, l'ordi gagne
+    - Si son nombre de points est inferieur à 18, il retourne une carte
+    - Si son nombre de points est superieur à 18 (entre 18 et 21), il s'arrette
+    - Si son nombre de points est superieur à 21, le joueur gagne
+
+## Jouer dans le terminal
+- Pour jouer dans le terminal, il suffit de lancer Julia et d'écrire PlayGame.game()
+- Faire le choix de prendre une nouvelle carte (Y/y), ou non (N/n)  
+
+
+<img src="images/BlackJack_terminal.png" alt="Terminal Julia" style="width: 50%; margin-top: -20px;">
+
+## Jouer dans le notebook Pluto.jl
+- Pour jouer le jeu avec un aspect graphique(bouttons, images des cartes), il suffit de
+
+
+---
+
+# Jeu Blackjack dans R
+
+## Jouer dans le terminal
+- Pour jouer dans le terminal, il suffit de prendre source(le_jeu.R) et run jeu() dans de terminal
+- Faire le choix de prendre une nouvelle carte (Y/y), ou non (N/n)  
+
+<img src="images/BlackJack_termR.png" alt="Terminal R" style="width: 50%; margin-top: -20px;">
+
+## Jouer avec Rshiny
+- On peut aussi jouer avec un aspect graphique en Rshiny
+
+<div class="two-images">
+<figure>
+    <img src="images/Shiny1.png" alt="1er affichage">
+    <figcaption>1er affichage</figcaption>
+  </figure>
+  <figure>
+    <img src="images/Shiny2.png" alt="Début du jeu">
+    <figcaption>Début du jeu</figcaption>
+  </figure>
+</div>
+
+## 
+<div class="two-images">
+<figure>
+    <img src="images/Shiny3.png" alt="Choix Hit">
+    <figcaption>Choix Hit</figcaption>
+  </figure><figure>
+    <img src="images/Shiny4.png" alt="Choix Stand et fin de la partie">
+    <figcaption>Choix Stand et fin de la partie</figcaption>
+  </figure>
+</div>
+
+- On a décider de faire le jeu encore une fois en utilisant Python mais juste dans le terminal
+
+# Jeu BlackJack dans Python
+- Jouer le jeu dans le terminal
+
+---
+
+## Benchmark Julia vs Python
+- On teste un algorithme classique: Le crible d'Ératosthène qui permet de trouver tous les nombres premiers inférieurs ou égaux à un entier donné N.
+- On a construit la fonction en Julia et en Python (on utilisant le PyCall en Julia)
+- Voici les comparaisons du temps d'exécution pour différentes valeurs de N
+
+<div class="two-images">
+<figure>
+    <img src="images/benchjulia1000.png" alt="Julia pour N=1000">
+    <figcaption>Julia pour N=1000</figcaption>
+  </figure>
+  <figure>
+    <img src="images/benchpy1000.png" alt="Python pour N=1000">
+    <figcaption>Python pour N=1000</figcaption>
+  </figure>
+</div>
+
+## 
+<div class="two-images">
+<figure>
+    <img src="images/benchjulia10000.png" alt="Julia pour N=10000">
+    <figcaption>Julia pour N=10000</figcaption>
+  </figure>
+  <figure>
+    <img src="images/benchpy10000.png" alt="Python pour N=10000">
+    <figcaption>Python pour N=10000</figcaption>
+  </figure>
+</div>
+
+<div class="two-images">
+<figure>
+    <img src="images/benchjulia100000.png" alt="Julia pour N=100000">
+    <figcaption>Julia pour N=100000</figcaption>
+  </figure>
+  <figure>
+    <img src="images/benchpy100000.png" alt="Python pour N=100000">
+    <figcaption>Python pour N=10000</figcaption>
+  </figure>
+</div>
+
+- On remarque que Julia prend toujours moins de temps que Python
+- Pour des valeurs de N relativement petite, la différence peur être considérée négligeable
+- Alors que pour de grandes valeurs de N, on remarque une différence de plus d'une minute.
+---
+## Dispatching

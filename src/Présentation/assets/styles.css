@@ -1,0 +1,43 @@
+#ajuster la position du sous-titre
+.reveal .slides h2 {
+  margin-top: -150px; 
+}
+
+.reveal .slide-logo-bottom-right {
+  bottom: 0 !important;
+  left: unset !important;
+  height: 100% !important;
+  max-height: 2.2rem !important;
+  right: 12px !important;
+}
+
+.slide-logo-max-size {
+  bottom: unset !important;
+  left: 12px;
+  height: 100px !important;
+  max-height: unset !important;
+  right: unset !important;
+  top: 5px;
+}
+
+.reveal .slide-logo {
+  display: block;
+  max-width: unset !important;
+  position: fixed;
+  width: 100x !important;
+}
+
+.two-images {
+  display: flex; /* Utilisation de flexbox */
+  justify-content: space-between; /* Espacement égal entre les images */
+  align-items: center; /* Aligner verticalement les images */
+  gap: 20px; /* Espacement horizontal entre les images */
+}
+
+.two-images img {
+  width: 90%; /* Chaque image prend 45% de la largeur disponible */
+  max-width: 500px; /* Largeur maximale des images */
+  height: auto; /* Conserver les proportions */
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre */
+}

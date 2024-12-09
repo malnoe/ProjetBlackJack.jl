@@ -1,0 +1,17 @@
+---
+title: "Rapport projet"
+---
+Noms : Lancelot Ravier, Danielle El Khoury, Garance Malnoë
+
+Bienvenue sur notre rapport !
+
+Nous avons travaillé sur différents projets qui ont chacun une page dédiée :
+
+- Un [jeu de blackjack](blackjack.qmd) en Julia, Python et R jouable dans le terminal et des tentatives d'affichage graphique.
+
+- Un [calculateur de dérivée](dispatching.qmd) en Julia et R, pour mettre en évidence l'utilité du multiple-dispatching de Julia.
+
+- Un [benchmark](benchmark.qmd) entre Julia, Python et C++ à partir du cribble d'Erathostene.
+
+
+Pour mieux comprendre le processus de création, la page [journal](journal.qmd) regroupe nos réflexions tout au long du projet.

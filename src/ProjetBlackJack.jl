@@ -57,7 +57,7 @@ function run_r_cartes_et_deck()
     R"""
     library(dplyr)
     script_path <- $script_path
-    source("$script_path")
+    source("script_path")
     """
 end
 

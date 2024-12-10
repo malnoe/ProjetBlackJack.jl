@@ -53,13 +53,24 @@ function init()
 end
 
 function run_r_cartes_et_deck()
-    script_path = joinpath(@__DIR__, "..", "deps", "blackjack_r", "Cartes_et_Deck.R")
-    R"""
-    library(dplyr)
-    script_path <- $script_path
-    source("script_path")
-    """
+    try
+        script_path = joinpath(@__DIR__, "..", "deps", "blackjack_r", "Cartes_et_Deck.R")
+        if !isfile(script_path)
+            error("Fichier R introuvable : $script_path")
+        end
+        
+        result = R"""
+        script_path <- $script_path
+        source(script_path)
+        """
+        println("Script R exécuté avec succès. Résultat : ", result)
+        return result
+    catch e
+        println("Erreur lors de l'exécution du script R : $e")
+        return nothing
+    end
 end
+
 
 function run_r_jeu()
     script_path = joinpath(@__DIR__, "..", "deps", "blackjack_r", "le_jeu.R")

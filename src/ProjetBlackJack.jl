@@ -2,7 +2,7 @@ module ProjetBlackJack
 
 using Vizagrams, Pluto, PlutoUI, HypertextLiteral, PyCall, RCall
 
-export game, Game, initialize_game, new!, turn!, end_game!, interaction, run_r_cartes_et_deck, run_r_jeu
+export game, Game, initialize_game, new!, turn!, end_game!, interaction, run_r_cartes_et_deck, run_r_jeu, init
 
 include("blackjack_julia/main_terminal.jl")
 include("blackjack_julia/jeu_pluto_notebook.jl")

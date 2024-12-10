@@ -56,6 +56,7 @@ function run_r_cartes_et_deck()
     script_path = joinpath(@__DIR__, "..", "deps", "blackjack_r", "Cartes_et_Deck.R")
     R"""
     library(dplyr)
+    script_path <- $script_path
     source("$script_path")
     """
 end

@@ -1,14 +1,11 @@
 module ProjetBlackJack
 
-using Vizagrams, Pluto, PlutoUI, HypertextLiteral
+using Vizagrams, Pluto, PlutoUI, HypertextLiteral, PyCall, RCall
 
 export game, Game, initialize_game, new!, turn!, end_game!, interaction, run_r_cartes_et_deck, run_r_jeu
 
 include("blackjack_julia/main_terminal.jl")
 include("blackjack_julia/jeu_pluto_notebook.jl")
-
-using PyCall
-using RCall
 
 # Initialisation de l'environnement Python
 function init_python_env()
@@ -24,7 +21,7 @@ end
 # Initialisation de l'environnement R
 function init_r_env()
     try
-        R"print('Initialisation de l'environnement R réussie')"  # Vérifie que R fonctionne
+        R"""print("Initialisation de l'environnement R réussie")"""  # Vérifie que R fonctionne
     catch e
         error("Échec de l'initialisation de l'environnement R: $e")
     end

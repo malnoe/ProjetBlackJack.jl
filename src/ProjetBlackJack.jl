@@ -21,7 +21,7 @@ end
 # Initialisation de l'environnement R
 function init_r_env()
     try
-        R"""print("Initialisation de l'environnement R réussie")"""  # Vérifie que R fonctionne
+        R"""print("Initialisation de l environnement R reussie")"""  # Vérifie que R fonctionne
     catch e
         error("Échec de l'initialisation de l'environnement R: $e")
     end

@@ -1,13 +1,77 @@
 ---
-title: "Benchmark entre Python, Julia et C++"
+title: "Benchmark entre Pytho et Julia"
+format: html
+jupyter: python3
 ---
+# Principe
+Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu'il s'agisse d'un langage "compiled just in time" et que python soit un langage interprété (supposé plus lent).
+
+La fonction que nous utilisons est un cribble d'erathostene prennant en paramètres un entier naturel n et renvoyant la liste des entiers naturels premiers strictement plus petits que n.
+
+Concrètement, on crée une liste de taille n remplie de booléens mis à true. Pour i allant de 2 à n, on regarde si les entiers j de i+1 à n sont des multiples de i, si c'est le cas on les notes comme non premiers dans la liste de booléens. Après la boucle, on renvoie les index de la liste qui sont à true.
+
+Puisqu'il s'agit de boucle for, le temps de calcul nécessaire peut rapidement augmenter.
+
 # Code
 
 ## Python
+Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.
+
+```{python}
+import time
+
+def cribble_erathostene_python(n=7):
+    liste_boolean_prime = [True for _ in range(0, n+1)]
+    liste_boolean_prime[0] = False
+    liste_boolean_prime[1] = False
+    for i in range(2, n):
+        for j in range(i + 1, n):
+            if liste_boolean_prime[j]:
+                if divmod(j, i)[1] == 0:
+                    liste_boolean_prime[j] = False
+
+    index_primes = [i for i, x in enumerate(liste_boolean_prime) if x]
+    return index_primes
+
+def cribble_erathostene_python_time(n=7):
+    time_start = time.time()
+    cribble_erathostene_python(n=n)  # Appel de la fonction cribble_erathostene
+    time_final = time.time() - time_start
+    return time_final
+
+print(cribble_erathostene_python(5000))
+print(cribble_erathostene_python_time(5000))
+```
 
 ## Julia
 
-## C++
-Image du code parce que C++ n'est pas supporté par Quarto.
+function cribble_erathostene_julia(n::Int64)
+    list_boolean_prime = ones(Bool,n)
+    list_boolean_prime[1] = false
+
+    for i in range(2,n)
+        for j in range(i+1,n)
+            # Si j est potentiellement premier
+            if (list_boolean_prime[j])
+                # Si i divise j
+                if (rem(j,i) == 0)
+                    # j n'est pas premier
+                    list_boolean_prime[j] = false
+                end
+            end
+        end
+    end
+    # On retourne les index de list_boolean_prime dont la valeur est true.
+    index_primes = findall(list_boolean_prime)
+    return index_primes
+end
+
+function cribble_erathostene_julia_time(n::Int64)
+    @time cribble_erathostene_julia(n)
+end
+
+cribble_erathostene_julia_time(50)
+
 
 # Comparaison
+

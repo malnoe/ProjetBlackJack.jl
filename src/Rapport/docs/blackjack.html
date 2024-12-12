@@ -128,17 +128,34 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#déroulement-dune-partie" id="toc-déroulement-dune-partie" class="nav-link" data-scroll-target="#déroulement-dune-partie">Déroulement d’une partie</a></li>
   <li><a href="#valeurs-des-cartes" id="toc-valeurs-des-cartes" class="nav-link" data-scroll-target="#valeurs-des-cartes">Valeurs des cartes</a></li>
-  <li><a href="#idées-supplémentaires" id="toc-idées-supplémentaires" class="nav-link" data-scroll-target="#idées-supplémentaires">Idées supplémentaires</a></li>
   </ul></li>
+  <li><a href="#idées-supplémentaires" id="toc-idées-supplémentaires" class="nav-link" data-scroll-target="#idées-supplémentaires">Idées supplémentaires</a></li>
+  <li><a href="#jeu-avec-julia" id="toc-jeu-avec-julia" class="nav-link" data-scroll-target="#jeu-avec-julia">Jeu avec Julia</a>
+  <ul class="collapse">
   <li><a href="#jeu-dans-le-terminal" id="toc-jeu-dans-le-terminal" class="nav-link" data-scroll-target="#jeu-dans-le-terminal">Jeu dans le terminal</a>
   <ul class="collapse">
-  <li><a href="#structure-du-projet-en-julia" id="toc-structure-du-projet-en-julia" class="nav-link" data-scroll-target="#structure-du-projet-en-julia">Structure du projet en Julia</a></li>
+  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
+  <li><a href="#a-vous-de-jouer" id="toc-a-vous-de-jouer" class="nav-link" data-scroll-target="#a-vous-de-jouer">A vous de jouer !</a></li>
   </ul></li>
-  <li><a href="#jeu-dans-un-notebook-pluto-tentative" id="toc-jeu-dans-un-notebook-pluto-tentative" class="nav-link" data-scroll-target="#jeu-dans-un-notebook-pluto-tentative">Jeu dans un notebook Pluto (tentative)</a></li>
+  <li><a href="#jeu-dans-un-notebook-pluto" id="toc-jeu-dans-un-notebook-pluto" class="nav-link" data-scroll-target="#jeu-dans-un-notebook-pluto">Jeu dans un notebook Pluto</a>
+  <ul class="collapse">
+  <li><a href="#structure-1" id="toc-structure-1" class="nav-link" data-scroll-target="#structure-1">Structure</a></li>
+  <li><a href="#une-longue-route-avant-la-réussite" id="toc-une-longue-route-avant-la-réussite" class="nav-link" data-scroll-target="#une-longue-route-avant-la-réussite">Une longue route avant la réussite</a></li>
+  <li><a href="#a-vous-de-jouer-1" id="toc-a-vous-de-jouer-1" class="nav-link" data-scroll-target="#a-vous-de-jouer-1">A vous de jouer !</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#jeu-dans-r" id="toc-jeu-dans-r" class="nav-link" data-scroll-target="#jeu-dans-r">Jeu dans R</a>
   <ul class="collapse">
-  <li><a href="#jeu-dans-le-terminal-1" id="toc-jeu-dans-le-terminal-1" class="nav-link" data-scroll-target="#jeu-dans-le-terminal-1">Jeu dans le terminal</a></li>
-  <li><a href="#jeu-avec-rshiny" id="toc-jeu-avec-rshiny" class="nav-link" data-scroll-target="#jeu-avec-rshiny">Jeu avec RShiny</a></li>
+  <li><a href="#jeu-dans-le-terminal-1" id="toc-jeu-dans-le-terminal-1" class="nav-link" data-scroll-target="#jeu-dans-le-terminal-1">Jeu dans le terminal</a>
+  <ul class="collapse">
+  <li><a href="#strucure" id="toc-strucure" class="nav-link" data-scroll-target="#strucure">Strucure</a></li>
+  <li><a href="#a-vous-de-jouer-2" id="toc-a-vous-de-jouer-2" class="nav-link" data-scroll-target="#a-vous-de-jouer-2">A vous de jouer !</a></li>
+  </ul></li>
+  <li><a href="#jeu-avec-rshiny" id="toc-jeu-avec-rshiny" class="nav-link" data-scroll-target="#jeu-avec-rshiny">Jeu avec RShiny</a>
+  <ul class="collapse">
+  <li><a href="#structure-2" id="toc-structure-2" class="nav-link" data-scroll-target="#structure-2">Structure</a></li>
+  <li><a href="#a-vous-de-jouer-3" id="toc-a-vous-de-jouer-3" class="nav-link" data-scroll-target="#a-vous-de-jouer-3">A vous de jouer !</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -170,19 +187,19 @@ ul.task-list li input[type="checkbox"] {
 <section id="déroulement-dune-partie" class="level2">
 <h2 class="anchored" data-anchor-id="déroulement-dune-partie">Déroulement d’une partie</h2>
 <ul>
-<li>6 jeux de carte sont défini et mélangé (52 cartes, pas de joker)</li>
+<li>6 jeux de carte sont définis et mélangés (52 cartes, pas de joker)</li>
 <li>Le joueur appuie sur un bouton pour démarrer la partie</li>
 <li>Le programme distribue deux cartes retournées au joueur</li>
-<li>Le programme distribue une carte retournée et une carte cachée a l’ordi</li>
+<li>Le programme distribue une carte retournée à l’ordinateur</li>
 <li>Les points sont calculés et affichés au joueur</li>
-<li>Le joueur doit choisir entre laisser l’ordi jouer ou retirer une carte</li>
+<li>Le joueur doit choisir entre laisser l’ordinateur jouer ou retirer une carte</li>
 <li>*S’il décide de tirer une carte :
 <ul>
 <li>Si le nombre de points est = 21, il a gagné et le jeu s’arrette</li>
 <li>Si le nombre de points est &gt;21, il a perdu et le jeu s’arrette</li>
 <li>Si le nombre de points inferieur à 21, il peut décider de rejouer* ou de s’arretter**</li>
 </ul></li>
-<li>**S’il décide de s’arretter, l’ordi va retourner la carte cachée :
+<li>**S’il décide de s’arretter, l’ordinateur va retirer une carte :
 <ul>
 <li>Si il tombe sur 21, l’ordi gagne</li>
 <li>Si son nombre de points est inferieur à 18, il retourne une carte</li>
@@ -203,62 +220,87 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="idées-supplémentaires" class="level2">
-<h2 class="anchored" data-anchor-id="idées-supplémentaires">Idées supplémentaires</h2>
+</section>
+<section id="idées-supplémentaires" class="level1">
+<h1>Idées supplémentaires</h1>
 <ul>
 <li>Ajouter une fonctionnalité de pari : le joueur peut parier des jetons sur sa réussite.</li>
 <li>Jouer à plusieurs.</li>
 <li>Ajouter un timer.</li>
 </ul>
 </section>
-</section>
-<section id="jeu-dans-le-terminal" class="level1">
-<h1>Jeu dans le terminal</h1>
-<section id="structure-du-projet-en-julia" class="level2">
-<h2 class="anchored" data-anchor-id="structure-du-projet-en-julia">Structure du projet en Julia</h2>
+<section id="jeu-avec-julia" class="level1">
+<h1>Jeu avec Julia</h1>
+<section id="jeu-dans-le-terminal" class="level2">
+<h2 class="anchored" data-anchor-id="jeu-dans-le-terminal">Jeu dans le terminal</h2>
+<section id="structure" class="level3">
+<h3 class="anchored" data-anchor-id="structure">Structure</h3>
 <ul>
 <li>Fichier carte.jl : Pour définir la classe carte (attributs : String nom, Int valeur, image interface graphique)</li>
-<li>Fichier deck.jl : Pour définir la classe deck (attributs : list de carte. Méthode : distribuer une carte (choisir une carte au hasard, la mettre dans la main de quelquu’un et l’enlever dans la liste de carte du deck)) Note : 6x52 cartes pour 1 deck de base.</li>
-<li>Fichier jeu.jl : Pour définir la classe de jeu (attributs : deck, deux main_cartes (ordi + joueur))</li>
+<li>Fichier deck.jl : Pour définir la classe deck (attributs : list de carte. Méthode : distribuer une carte (choisir une carte au hasard, la mettre dans la main de quelqu’un et l’enlever dans la liste de carte du deck)) Note : 6x52 cartes pour 1 deck de base.</li>
+<li>Fichier jeu.jl : Pour définir la classe de jeu (attributs : deck, deux main_cartes (ordinateur + joueur))</li>
 <li>Fichier main_terminal.jl : fonction générale avec les boucles de jeu.</li>
 </ul>
 </section>
+<section id="a-vous-de-jouer" class="level3">
+<h3 class="anchored" data-anchor-id="a-vous-de-jouer">A vous de jouer !</h3>
+<p>Instructions pour lancer le jeu dans le terminal</p>
 </section>
-<section id="jeu-dans-un-notebook-pluto-tentative" class="level1">
-<h1>Jeu dans un notebook Pluto (tentative)</h1>
+</section>
+<section id="jeu-dans-un-notebook-pluto" class="level2">
+<h2 class="anchored" data-anchor-id="jeu-dans-un-notebook-pluto">Jeu dans un notebook Pluto</h2>
+<section id="structure-1" class="level3">
+<h3 class="anchored" data-anchor-id="structure-1">Structure</h3>
 <ul>
-<li><p>Création des modules dans les fichiers Julia pour pouvoir les appeler dans Pluto</p></li>
-<li><p>Réussir à créer des boutons (“New Game”, “Hit”, “Stand”) et d’afficher le jeu dans un terminal Julia avec interaction des boutons</p></li>
-<li><p>Faute d’interaction du jeu avec les boutons et découvrir que la réinitialisation d’une variable dans Pluto est impossible à faire car il a considère comme nouvelle définiton de la variable</p></li>
-<li><p>Essai de nettoyer un peu le notebook Pluto. Recherche de moyen de debbug un notebook pluto mais ça n’est pas disponible directement dans Pluto et la librairie (https://github.com/disberd/PlutoVSCodeDebugger.jl) proposant de le faire dans VSCode n’a pas été mis à jour depuis plusieurs mois (presque 1an) donc pas moyen de faire le cheminement de penser du notebook sans faire du débug.</p></li>
-<li><p>Décider d’archiver le premier essai du jeu qui consistait, dans le fichier jeu.jl, d’une fonction jeu qui contient toutes les étapes du jeu, et de créer des fonctions pour chaque étape (initialiser le jeu, affichage du statut de la partie, saisir la réponse du joueur dans le terminal) et une boucle pour agir sur le jeu selon le choix du joueur pour pouvoir juste les appeler pour faire run au jeu dans le terminal et dans Pluto. Puis, création d’un fichier main_terminal.jl avec la fontion “game” appelant les fonctions créées dans jeu.jl pour l’exécution du jeu.</p></li>
-<li><p>Échec de l’interaction dans Pluto: au début on pensait que c’était parce qu’on n’avait pas le temps de changer la valeur du bouton et donc on a pensé à mettre un sleep dans la boucle pour avoir le temps de cliquer sur les boutons pour changer la valeur de l’input mais aussi on rencontre un échec, on ne peut pas update les boutons tant que la fonction game() n’est pas terminée.</p></li>
-<li><p>Corriger les bouton hit, stand, new game dans Pluto avec Vizigram.</p></li>
-<li><p>Changer la fonction “game” pour ne plus contenir une loop “while”.</p></li>
-<li><p>Le problème dans Pluto persiste</p></li>
+<li>On réutilise les strucures et fonctions des fichiers carte.jl et deck.jl</li>
+<li>Fichier jeu_pluto_notebook.jl : Module des fonctions pour le pluto permettant d’initialiser une partie, de gérer un tour de jeu en fonction des actions du jeu, fonctions d’affichage des boutons et du texte du jeu avec Vizagram.</li>
 </ul>
+</section>
+<section id="une-longue-route-avant-la-réussite" class="level3">
+<h3 class="anchored" data-anchor-id="une-longue-route-avant-la-réussite">Une longue route avant la réussite</h3>
+<p>Cette partie nous a posé problème pendant longtemps, nous avions réussi à créer les boutons (“New Game”, “Hit”, “Stand”) mais nous n’arrivions pas à gérer la définition et la mise à jour des variables liées aux boutons : on ne pouvait pas mettre à jour les boutons tant que la partie n’était pas terminée. Nous avons notamment essayé de trouver un moyen de debbug un notebook pluto mais ce n’est pas disponible directement dans Pluto, et la librairie (https://github.com/disberd/PlutoVSCodeDebugger.jl) proposant de le faire dans VSCode n’a pas été mise à jour depuis plusieurs mois (presque 1an) donc pas utilisabel. Une archive de nos essais se trouve dans le dossier blackjack_julia/Essai1_PlutoNotebook_NotWorking.</p>
+</section>
+<section id="a-vous-de-jouer-1" class="level3">
+<h3 class="anchored" data-anchor-id="a-vous-de-jouer-1">A vous de jouer !</h3>
+<p>Instructions pour lancer le plutonotebook depuis le terminal.</p>
+</section>
+</section>
 </section>
 <section id="jeu-dans-r" class="level1">
 <h1>Jeu dans R</h1>
 <ul>
-<li>Structure du code un peu similaire à Julia</li>
-<li>La difference la plus flagrante: Julia ne change pas la classe des variables en appliquant des fonction, alors que dans R, ça change. Un exemple sur cela se voit dans la fonction sample change la classe deck en une classe list.</li>
+<li>Structure du code assez similaire à Julia</li>
+<li>La difference la plus flagrante entre les deux langages: Julia ne change pas la classe des variables en appliquant des fonction, alors que dans R, ça change. Un exemple sur cela se voit dans la fonction sample change la classe deck en une classe list.</li>
 <li>Solution: on impose la classe en appliquant la fonction, par exemple: Deck(sample(…)) ce qui rend une classe deck et pas list.</li>
 </ul>
 <section id="jeu-dans-le-terminal-1" class="level2">
 <h2 class="anchored" data-anchor-id="jeu-dans-le-terminal-1">Jeu dans le terminal</h2>
+<section id="strucure" class="level3">
+<h3 class="anchored" data-anchor-id="strucure">Strucure</h3>
 <ul>
 <li>Fichier Cartes_et_Deck.R : Pour définir les définition de cartes et de deck, et les fonctions à utiliser et à appeler dans le jeu.</li>
 <li>Fichier le_jeu.R : Pour définir un fonction pour initialiser le jeu, une autre pour afficher le statut de la partie et une pour saisir la réponse du joueur dans le terminal. Définir aussi la fonction jeu qui appelle les autres fontions pour faire run au jeu.</li>
 </ul>
 </section>
+<section id="a-vous-de-jouer-2" class="level3">
+<h3 class="anchored" data-anchor-id="a-vous-de-jouer-2">A vous de jouer !</h3>
+<p>Instructions pour lancer le jeu dans le terminal.</p>
+</section>
+</section>
 <section id="jeu-avec-rshiny" class="level2">
 <h2 class="anchored" data-anchor-id="jeu-avec-rshiny">Jeu avec RShiny</h2>
+<section id="structure-2" class="level3">
+<h3 class="anchored" data-anchor-id="structure-2">Structure</h3>
 <ul>
 <li>Fichier shinyapp.r : En utilisant comme source le fichier “Cartes_et_Deck.R”, initialiser le jeu, décrire un path pour les images à utiliser dans le jeu, créer des boutons pour les actions du joueur (“New Game”, “Hit”, “Stand”), afficher une console intéractive pour pouvoir jouer.</li>
 </ul>
+</section>
+<section id="a-vous-de-jouer-3" class="level3">
+<h3 class="anchored" data-anchor-id="a-vous-de-jouer-3">A vous de jouer !</h3>
+<p>Instructions pour lancer le shiny depuis le terminal.</p>
 
 
+</section>
 </section>
 </section>
 

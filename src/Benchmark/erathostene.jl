@@ -5,24 +5,27 @@ using PyCall
 py"""
 import time
 
-def cribble_erathostene(n=10):
-    liste_boolean_prime = [True for _ in range(0, n)]
-    for i in range(1, n):
+def cribble_erathostene(n=7):
+    liste_boolean_prime = [True for _ in range(0, n+1)]
+    liste_boolean_prime[0] = False
+    liste_boolean_prime[1] = False
+    for i in range(2, n):
         for j in range(i + 1, n):
             if liste_boolean_prime[j]:
-                if divmod(j + 1, i + 1)[1] == 0:
+                if divmod(j, i)[1] == 0:
                     liste_boolean_prime[j] = False
 
-    index_primes = [i + 1 for i, x in enumerate(liste_boolean_prime) if x]
+    index_primes = [i for i, x in enumerate(liste_boolean_prime) if x]
     return index_primes
 """
 
 # Importer la fonction Python pour l'utiliser dans Julia
 cribble_erathostene_python = py"cribble_erathostene"
-
+cribble_erathostene_python(7)
 # Fonction cribble en Julia
 function cribble_erathostene_julia(n::Int64)
-    list_boolean_prime = ones(Bool,n)
+    list_boolean_prime = ones(Bool,n+1)
+    list_boolean_prime[1] = false
 
     for i in range(2,n)
         for j in range(i+1,n)
@@ -44,10 +47,7 @@ end
 
 # Temps Python
 function cribble_erathostene_python_time(n::Int64)
-    time_start = pyimport("time").time()
-    cribble_erathostene_python(n=n)  # Appel de la fonction cribble_erathostene
-    time_final = pyimport("time").time() - time_start
-    return time_final
+    @time cribble_erathostene_python(n)  # Appel de la fonction cribble_erathostene
 end
 
 # Temps Julia
@@ -56,7 +56,7 @@ function cribble_erathostene_julia_time(n::Int64)
 end
 
 # Résultats
-number = 1000
+number = 50
 println("Julia :")
 time_julia = cribble_erathostene_julia_time(number)
 println("Python :")

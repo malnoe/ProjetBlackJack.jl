@@ -54,7 +54,7 @@ Une fois le package installé et appelé depuis votre terminal, tappez la comman
 Cette partie nous a posé problème pendant longtemps, nous avions réussi à créer les boutons ("New Game", "Hit", "Stand") mais nous n'arrivions pas à gérer la définition et la mise à jour des variables liées aux boutons : on ne pouvait pas mettre à jour les boutons tant que la partie n'était pas terminée. Nous avons notamment essayé de trouver un moyen de debbug un notebook pluto mais ce n'est pas disponible directement dans Pluto, et la librairie (https://github.com/disberd/PlutoVSCodeDebugger.jl) proposant de le faire dans VSCode n'a pas été mise à jour depuis plusieurs mois (presque 1an) donc pas utilisabel. Une archive de nos essais se trouve dans le dossier blackjack_julia/Essai1_PlutoNotebook_NotWorking.
 
 ### A vous de jouer !
-Instructions pour lancer le plutonotebook depuis le terminal.
+Pour jouer au notebook, tappez la commande suivante dans le terminal : blackjack_notebook()
 
 # Jeu dans R
 - Structure du code assez similaire à Julia

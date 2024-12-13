@@ -11,7 +11,7 @@ function blackjack_notebook()
     # Specify the path to the example notebook
     notebook_path = joinpath(@__DIR__,"examples", "blackjack_notebook.jl")
     if isfile(notebook_path)
-        Pluto.run(notebook_path)
+        Pluto.run(notebook=notebook_path)
     else
         error("Notebook file not found: $notebook_path")
     end

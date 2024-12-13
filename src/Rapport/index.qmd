@@ -7,7 +7,7 @@ Bienvenue sur notre rapport !
 
 Nous avons travaillé sur différents projets qui ont chacun une page dédiée :
 
-- Un [jeu de blackjack](blackjack.qmd) en Julia, Python et R jouable dans le terminal et des tentatives d'affichage graphique.
+- Un [jeu de blackjack](blackjack.qmd) en Julia, Python et R jouable depuis le terminal et depuis des interfaces graphiques.
 
 - Un [calculateur de dérivée](dispatching.qmd) en Julia et R, pour mettre en évidence l'utilité du multiple-dispatching de Julia.
 
@@ -15,3 +15,7 @@ Nous avons travaillé sur différents projets qui ont chacun une page dédiée :
 
 
 Pour mieux comprendre le processus de création, la page [journal](journal.qmd) regroupe nos réflexions tout au long du projet.
+
+Pour installer le package Julia : https://github.com/malnoe/ProjetBlackJack.jl
+Pour installer le package R :
+

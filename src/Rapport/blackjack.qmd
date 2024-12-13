@@ -42,7 +42,7 @@ title: "Projet jeu du blackjack"
 - Fichier main_terminal.jl : fonction générale avec les boucles de jeu.
 
 ### A vous de jouer !
-Instructions pour lancer le jeu dans le terminal
+Une fois le package installé et appelé depuis votre terminal, tappez la commande suivante pour tester : ProjetBlackJack.PlayGame.game()
 
 ## Jeu dans un notebook Pluto
 

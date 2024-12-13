@@ -1,5 +1,5 @@
 # Import de la fonction Python
-module benchmark
+module Benchmark
 using PyCall
 
 # Fonction cribble Python

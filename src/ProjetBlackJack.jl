@@ -2,7 +2,7 @@ module ProjetBlackJack
 
 using Vizagrams, Pluto, PlutoUI, HypertextLiteral, Downloads, PyCall
 
-export game, Game, initialize_game, new!, turn!, end_game!, interaction, blackjack_notebook, cribble_erathostene_python, cribble_erathostene_python_time, cribble_erathostene_julia, cribble_erathostene_julia_time
+export help, game, Game, initialize_game, new!, turn!, end_game!, interaction, blackjack_notebook, cribble_erathostene_python, cribble_erathostene_python_time, cribble_erathostene_julia, cribble_erathostene_julia_time
 
 include("blackjack_julia/main_terminal.jl")
 include("blackjack_julia/jeu_pluto_notebook.jl")
@@ -21,4 +21,10 @@ function blackjack_notebook()
     # Ouvrir le notebook avec Pluto
     Pluto.run(notebook=temp_notebook_path)
 end
+
+function help()
+    println("Fonction utiles :")
+    println("Blackjack Julia :")
+    println("Benchmarck :")
+    println("Dispatching :")
 end

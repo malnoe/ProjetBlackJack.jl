@@ -26,7 +26,7 @@
         "## Python\n",
         "Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.\n"
       ],
-      "id": "ae2b498c"
+      "id": "9c77b41a"
     },
     {
       "cell_type": "code",
@@ -60,7 +60,7 @@
         "@bind n Slider(10:10:1000, show_value=true)\n",
         "cribble_erathostene_python_time(n)"
       ],
-      "id": "985d9262",
+      "id": "221f7c61",
       "execution_count": null,
       "outputs": []
     },
@@ -70,7 +70,7 @@
       "source": [
         "## Julia\n"
       ],
-      "id": "34d2d361"
+      "id": "67078eb8"
     },
     {
       "cell_type": "code",
@@ -106,9 +106,18 @@
         "@bind n Slider(10:10:1000, show_value=true)\n",
         "cribble_erathostene_julia_time(n)"
       ],
-      "id": "9af2590a",
+      "id": "e077731e",
       "execution_count": null,
       "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# A vous de jouer\n",
+        "Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser"
+      ],
+      "id": "fab9b5f8"
     }
   ],
   "metadata": {

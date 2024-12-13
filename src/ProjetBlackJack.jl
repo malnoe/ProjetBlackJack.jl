@@ -1,6 +1,6 @@
 module ProjetBlackJack
 
-using Vizagrams, Pluto, PlutoUI, HypertextLiteral
+using Vizagrams, Pluto, PlutoUI, HypertextLiteral, Downloads
 
 export game, Game, initialize_game, new!, turn!, end_game!, interaction, blackjack_notebook
 

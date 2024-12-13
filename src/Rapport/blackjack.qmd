@@ -68,7 +68,11 @@ Pour jouer au notebook, tappez la commande suivante dans le terminal : blackjack
 - Fichier le_jeu.R : Pour définir un fonction pour initialiser le jeu, une autre pour afficher le statut de la partie et une pour saisir la réponse du joueur dans le terminal. Définir aussi la fonction jeu qui appelle les autres fontions pour faire run au jeu.
 
 ### A vous de jouer !
-Instructions pour lancer le jeu dans le terminal.
+Pour lancer le jeu depuis le terminal R : 
+```r
+library(blackjack)
+jeu()
+```
 
 
 ## Jeu avec RShiny
@@ -77,7 +81,11 @@ Instructions pour lancer le jeu dans le terminal.
 - Fichier shinyapp.r : En utilisant comme source le fichier "Cartes_et_Deck.R", initialiser le jeu, décrire un path pour les images à utiliser dans le jeu, créer des boutons pour les actions du joueur ("New Game", "Hit", "Stand"), afficher une console intéractive pour pouvoir jouer.
 
 ### A vous de jouer !
-Instructions pour lancer le shiny depuis le terminal.
+Pour lancer le shiny depuis le terminal R :
+```r
+library(blackjack)
+shiny::runApp(system.file("shinyapp", package = "blackjack"))
+```
 
 
 

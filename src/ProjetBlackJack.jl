@@ -1,11 +1,12 @@
 module ProjetBlackJack
 
-using Vizagrams, Pluto, PlutoUI, HypertextLiteral, Downloads
+using Vizagrams, Pluto, PlutoUI, HypertextLiteral, Downloads, PyCall
 
-export game, Game, initialize_game, new!, turn!, end_game!, interaction, blackjack_notebook
+export game, Game, initialize_game, new!, turn!, end_game!, interaction, blackjack_notebook, cribble_erathostene_python, cribble_erathostene_python_time, cribble_erathostene_julia, cribble_erathostene_julia_time
 
 include("blackjack_julia/main_terminal.jl")
 include("blackjack_julia/jeu_pluto_notebook.jl")
+include("Benchmark/erathostene.jl")
 
 function blackjack_notebook()
     # URL vers le fichier notebook sur ton dépôt GitHub

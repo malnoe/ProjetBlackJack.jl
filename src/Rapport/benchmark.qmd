@@ -1,7 +1,7 @@
 ---
 title: "Benchmark entre Pytho et Julia"
 format: html
-jupyter: python3
+jupyter: julia-1.10
 ---
 # Principe
 Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu'il s'agisse d'un langage "compiled just in time" et que python soit un langage interprété (supposé plus lent).
@@ -17,10 +17,13 @@ Puisqu'il s'agit de boucle for, le temps de calcul nécessaire peut rapidement a
 ## Python
 Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.
 
-```{python}
+```{julia}
+using PyCall
+
+py"""
 import time
 
-def cribble_erathostene_python(n=7):
+def cribble_erathostene(n=7):
     liste_boolean_prime = [True for _ in range(0, n+1)]
     liste_boolean_prime[0] = False
     liste_boolean_prime[1] = False
@@ -32,21 +35,24 @@ def cribble_erathostene_python(n=7):
 
     index_primes = [i for i, x in enumerate(liste_boolean_prime) if x]
     return index_primes
+"""
 
-def cribble_erathostene_python_time(n=7):
-    time_start = time.time()
-    cribble_erathostene_python(n=n)  # Appel de la fonction cribble_erathostene
-    time_final = time.time() - time_start
-    return time_final
+cribble_erathostene_python = py"cribble_erathostene"
 
-print(cribble_erathostene_python(5000))
-print(cribble_erathostene_python_time(5000))
+function cribble_erathostene_julia_time(n::Int64)
+    @time cribble_erathostene_julia(n)
+end
+
+@bind n Slider(10:10:1000, show_value=true)
+cribble_erathostene_python_time(n)
 ```
 
 ## Julia
+```{julia}
+using PlutoUI
 
 function cribble_erathostene_julia(n::Int64)
-    list_boolean_prime = ones(Bool,n)
+    list_boolean_prime = ones(Bool,n+1)
     list_boolean_prime[1] = false
 
     for i in range(2,n)
@@ -70,8 +76,9 @@ function cribble_erathostene_julia_time(n::Int64)
     @time cribble_erathostene_julia(n)
 end
 
-cribble_erathostene_julia_time(50)
+@bind n Slider(10:10:1000, show_value=true)
+cribble_erathostene_julia_time(n)
+```
 
-
-# Comparaison
-
+# A vous de jouer
+Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser

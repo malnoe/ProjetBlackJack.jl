@@ -1,0 +1,124 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Benchmark entre Pytho et Julia\"\n",
+        "format: html\n",
+        "jupyter: julia-1.10\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Principe\n",
+        "Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu'il s'agisse d'un langage \"compiled just in time\" et que python soit un langage interprété (supposé plus lent).\n",
+        "\n",
+        "La fonction que nous utilisons est un cribble d'erathostene prennant en paramètres un entier naturel n et renvoyant la liste des entiers naturels premiers strictement plus petits que n.\n",
+        "\n",
+        "Concrètement, on crée une liste de taille n remplie de booléens mis à true. Pour i allant de 2 à n, on regarde si les entiers j de i+1 à n sont des multiples de i, si c'est le cas on les notes comme non premiers dans la liste de booléens. Après la boucle, on renvoie les index de la liste qui sont à true.\n",
+        "\n",
+        "Puisqu'il s'agit de boucle for, le temps de calcul nécessaire peut rapidement augmenter.\n",
+        "\n",
+        "# Code\n",
+        "\n",
+        "## Python\n",
+        "Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.\n"
+      ],
+      "id": "ae2b498c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "using PyCall\n",
+        "\n",
+        "py\"\"\"\n",
+        "import time\n",
+        "\n",
+        "def cribble_erathostene(n=7):\n",
+        "    liste_boolean_prime = [True for _ in range(0, n+1)]\n",
+        "    liste_boolean_prime[0] = False\n",
+        "    liste_boolean_prime[1] = False\n",
+        "    for i in range(2, n):\n",
+        "        for j in range(i + 1, n):\n",
+        "            if liste_boolean_prime[j]:\n",
+        "                if divmod(j, i)[1] == 0:\n",
+        "                    liste_boolean_prime[j] = False\n",
+        "\n",
+        "    index_primes = [i for i, x in enumerate(liste_boolean_prime) if x]\n",
+        "    return index_primes\n",
+        "\"\"\"\n",
+        "\n",
+        "cribble_erathostene_python = py\"cribble_erathostene\"\n",
+        "\n",
+        "function cribble_erathostene_julia_time(n::Int64)\n",
+        "    @time cribble_erathostene_julia(n)\n",
+        "end\n",
+        "\n",
+        "@bind n Slider(10:10:1000, show_value=true)\n",
+        "cribble_erathostene_python_time(n)"
+      ],
+      "id": "985d9262",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Julia\n"
+      ],
+      "id": "34d2d361"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "using PlutoUI\n",
+        "\n",
+        "function cribble_erathostene_julia(n::Int64)\n",
+        "    list_boolean_prime = ones(Bool,n+1)\n",
+        "    list_boolean_prime[1] = false\n",
+        "\n",
+        "    for i in range(2,n)\n",
+        "        for j in range(i+1,n)\n",
+        "            # Si j est potentiellement premier\n",
+        "            if (list_boolean_prime[j])\n",
+        "                # Si i divise j\n",
+        "                if (rem(j,i) == 0)\n",
+        "                    # j n'est pas premier\n",
+        "                    list_boolean_prime[j] = false\n",
+        "                end\n",
+        "            end\n",
+        "        end\n",
+        "    end\n",
+        "    # On retourne les index de list_boolean_prime dont la valeur est true.\n",
+        "    index_primes = findall(list_boolean_prime)\n",
+        "    return index_primes\n",
+        "end\n",
+        "\n",
+        "function cribble_erathostene_julia_time(n::Int64)\n",
+        "    @time cribble_erathostene_julia(n)\n",
+        "end\n",
+        "\n",
+        "@bind n Slider(10:10:1000, show_value=true)\n",
+        "cribble_erathostene_julia_time(n)"
+      ],
+      "id": "9af2590a",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-1.10",
+      "language": "julia",
+      "display_name": "Julia 1.10.5",
+      "path": "C:\\Users\\garan\\AppData\\Roaming\\jupyter\\kernels\\julia-1.10"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

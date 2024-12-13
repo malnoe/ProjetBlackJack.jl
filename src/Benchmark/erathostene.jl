@@ -1,4 +1,5 @@
 # Import de la fonction Python
+module benchmark
 using PyCall
 
 # Fonction cribble Python
@@ -62,3 +63,7 @@ time_julia = cribble_erathostene_julia_time(number)
 println("Python :")
 time_python = cribble_erathostene_python_time(number)
 println("For $number it took $time_python second for Python")
+
+export cribble_erathostene_python, cribble_erathostene_python_time, cribble_erathostene_julia, cribble_erathostene_julia_time
+
+end

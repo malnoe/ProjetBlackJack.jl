@@ -25,7 +25,7 @@ cribble_erathostene_python = py"cribble_erathostene"
 cribble_erathostene_python(7)
 # Fonction cribble en Julia
 function cribble_erathostene_julia(n::Int64)
-    list_boolean_prime = ones(Bool,n+1)
+    list_boolean_prime = ones(Bool,n)
     list_boolean_prime[1] = false
 
     for i in range(2,n)

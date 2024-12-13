@@ -25,8 +25,11 @@ end
 function help()
     println("Fonction utiles :")
     println("Blackjack Julia :")
+    print("ProjetBlackJack.PlayGame.game(), blackjack_notebook()")
     println("Benchmarck :")
+    print(" ProjetBlackJack.Benchmark.cribble_erathostene_python(n),  ProjetBlackJack.Benchmark.cribble_erathostene_python_time(n),  ProjetBlackJack.Benchmark.cribble_erathostene_julia(n),  ProjetBlackJack.Benchmark.cribble_erathostene_julia_time(n)")
     println("Dispatching :")
+    print(".......")
 end
 
 end

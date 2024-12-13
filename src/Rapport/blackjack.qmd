@@ -71,7 +71,6 @@ Pour jouer au notebook, tappez la commande suivante dans le terminal : blackjack
 Instructions pour lancer le jeu dans le terminal.
 
 
-
 ## Jeu avec RShiny
 
 ### Structure

@@ -1,0 +1,67 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Illustration du simple et multiple dispatching : calculateur de dérivées\"\n",
+        "jupyter: julia-1.11\n",
+        "---\n",
+        "\n",
+        "# Principe\n",
+        "Dans la programmation orienté $*objet* et les langages *fonctionnels*, le **dispatching** détermine **quelle version d'une fonction ou d'une méthode doit ètre appelée** lorsqu'une fonction est éxécutée, en fonction de ses arguments ou d'autres critères.\n",
+        "\n",
+        "Il existe deux types de dispatching : \n",
+        "- Le **simple dispatching**\n",
+        "- Le **multiple dispatching**\n",
+        "\n",
+        "# Code\n",
+        "\n",
+        "\n",
+        "```{r}\n",
+        "print(\"hello\")\n",
+        "```\n",
+        "\n",
+        "```{python}\n",
+        "print(\"hello\")\n",
+        "```"
+      ],
+      "id": "1c751c0e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(\"hellp\")"
+      ],
+      "id": "efa1db70",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## R\n",
+        "\n",
+        "\n",
+        "## Julia\n",
+        "\n",
+        "\n",
+        "# Remarques"
+      ],
+      "id": "1e5217d4"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "julia-1.11",
+      "language": "julia",
+      "display_name": "Julia 1.11.2",
+      "path": "/Users/lancelot/Library/Jupyter/kernels/julia-1.11"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

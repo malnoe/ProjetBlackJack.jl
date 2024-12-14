@@ -1,15 +1,138 @@
 ---
 title: "Illustration du simple et multiple dispatching : calculateur de dérivées"
+jupyter: julia-1.11
 ---
-# Principe
-Explication idée
+# Le dispatching : qu'est ce que c'est ?
+Dans la programmation orienté $*objet* et les langages *fonctionnels*, le **dispatching** détermine **quelle version d'une fonction ou d'une méthode doit ètre appelée** lorsqu'une fonction est éxécutée, en fonction de ses arguments ou d'autres critères. Certains langages de programmations comme **Python** ou **R** intègre le **simple dispatching**, tandis que d'autres langages intègrent une téchnique plus avancée : le **multiple dispatching**. Dans les deux exemples ci-dessous (en R puis en Julia), nous allons définir une fonction qui effectue une multiplication matricielle si les entrées sont des matrices, et une multiplication élément par élément si les entrées sont des vecteurs. Asini, nous allons pouvoir analyser les différences de code entre les deux langages.
 
-# Code
+# Simple dispatching (R) :
 
-## R
+Le **simple dispatching** repose uniquement sur le **premier argument** de la fonction. L'execution de la fonction nécessite des verifications manuelles dans chaque méthode, affectant fortement le coût d'execution du code (poussé davantage par le caractère interprété des langages comme R et python). L'ajout de nouveaux cas (exemple 2) nécecssite de modifier le code existant, créeant un risque d'introduire des erreurs, rends le code moins maintenable et peut nécessiter des tests supplémentaires pour s'assurer que les modifications n'ont pas modifié les comportements existants.
+
+```{r}
+multiply <- function(x, y) {
+  UseMethod("multiply")
+}
+
+# Méthode pour les matrices
+multiply.matrix <- function(x, y) {
+  if (is.matrix(x) && is.matrix(y)) {
+    return(x %*% y)  # Multiplication matricielle
+  } else if (is.matrix(x) && is.numeric(y)) {
+    return(x * y)  # Multiplication élément par élément
+  } else {
+    stop("Invalid types for matrix multiplication")
+  }
+}
+
+# Méthode pour les vecteurs
+multiply.numeric <- function(x, y) {
+  if (is.numeric(x) && is.numeric(y)) {
+    return(x * y)  # Multiplication élément par élément
+  } else if (is.numeric(x) && is.matrix(y)) {
+    return(x * y)  # Multiplication élément par élément
+  } else {
+    stop("Invalid types for numeric multiplication")
+  }
+}
+
+# # Tests
+# matrice_A <- matrix(1:4, 2, 2)
+# matrice_B <- matrix(5:8, 2, 2)
+# vecteur_1 <- c(1, 2)
+# vecteur_2 <- c(4, 5)
+
+# # Multiplication correcte
+# print(multiply(matrice_A, matrice_B))      # Multiplication matricielle
+# print(multiply(vecteur_1, vecteur_2))    # Multiplication élément par élément
+# print(multiply(matrice_A, vecteur_1))     # Multiplication élément par élément
+# print(multiply(vecteur_1, matrice_A))     # Multiplication élément par élément
+```
 
 
-## Julia
+# Multiple dispatching (Julia) :
 
+Le multiple dispatching permet de définir des méthodes spécifiques pour chaque combinaisons de types d'arguments pour une fonction donnée, sans vérifications manuelles supplémentaires.
+En Julia, le multiple dispatching permet de définir des méthodes spécifiques pour chaque combinaison de types d'arguments, sans vérifications manuelles supplémentaires.
+Chaque combinaison de types est une méthode distincte. Il y'a une séparation claire entre les comportements par types. L'ajout d'une nouvelle méthode est indépendante des autres, et julia génère duc cde natif pour chaque émthode.
 
-# Remarques
+```{julia}
+# Méthode pour deux matrices
+function multiply(x::Matrix, y::Matrix)
+    return x * y  # Multiplication matricielle
+end
+
+# Méthode pour deux vecteurs
+function multiply(x::Vector, y::Vector)
+    return x .* y  # Multiplication élément par élément
+end
+
+# Méthode pour une matrice et un vecteur
+function multiply(x::Matrix, y::Vector)
+    return x .* y  # Multiplication élément par élément
+end
+
+# Méthode pour un vecteur et une matrice
+function multiply(x::Vector, y::Matrix)
+    return x .* y  # Multiplication élément par élément
+end
+
+# # Tests
+# A = [1 2; 3 4]
+# B = [5 6; 7 8]
+# v1 = [1, 2]
+# v2 = [4, 5]
+
+# println(multiply(A, B))   # Multiplication matricielle
+# println(multiply(v1, v2)) # Multiplication élément par élément
+# println(multiply(A, v1))  # Multiplication élément par élément
+# println(multiply(v1, A))  # Multiplication élément par élément
+```
+
+# Comparaison de l'ajout d'une modalité dans les deux 
+
+## R : 
+Dans le cas où nous voudrions rajouter une méthode (ici : multiplicaion entre une matrice et un scalaire), il faut modifier la méthode multiplu
+
+```{r}
+# Mise à jour de la méthode pour les matrices
+multiply.matrix <- function(x, y) {
+  if (is.matrix(x) && is.matrix(y)) {
+    return(x %*% y)  # Multiplication matricielle
+  } else if (is.matrix(x) && is.numeric(y) && length(y) == 1) {
+    return(x * y)  # Multiplication par un scalaire
+  } else if (is.matrix(x) && is.numeric(y)) {
+    return(x * y)  # Multiplication élément par élément (vecteur)
+  } else {
+    stop("Invalid types for matrix multiplication")
+  }
+}
+
+# Tests supplémentaires
+A <- matrix(1:4, 2, 2)
+scalar <- 3
+
+print(multiply(A, scalar))  # Multiplication matrice par scalaire
+```
+
+Cette méthode d'ajout rajoute de la compléxité car il fait
+
+## Julia :
+
+```{julia}
+# Ajout d'une méthode spécifique pour matrice et nombre
+function multiply(x::Matrix, y::Number)
+    return x .* y  # Multiplication par un scalaire
+end
+
+# Tests supplémentaires
+A = [1 2; 3 4]
+scalar = 3
+
+println(multiply(A, scalar))  # Multiplication matrice par scalaire
+
+```
+
+Conclusion
+
+En R, gérer des cas supplémentaires devient rapidement complexe et illisible. En Julia, le multiple dispatching permet d'ajouter facilement de nouveaux comportements pour des combinaisons de types, sans toucher au code existant. Cela rend Julia à la fois plus performant, plus clair, et plus extensible.

@@ -96,6 +96,15 @@ Pour lancer le shiny depuis le terminal R :
 library(blackjack)
 shiny::runApp(system.file("shinyapp", package = "blackjack"))
 ```
+# Jeu dans Python
+## Jeu dans le terminal
+### Strucutre
+La strucute est assez similaire à celle de Julia.
+- Fichier `carte` : Pour définir la class carte.
+- Fichier `deck` : Pour définir la class deck (main des joueurs).
+- Fichier `jeu` : Pour définir les fonctions de jeu.
+Pour pouvuoir jouer au jeu depuis le package Julia, on utilise le package PyCall.
 
-
+### A vous de jouer !
+Pour jouer à la version Python, tappez la commande suivante dans le terminal : `BlackjackPython.blackjack_python()`.
 

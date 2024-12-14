@@ -7,7 +7,7 @@ py"""
 import time
 
 def cribble_erathostene(n=7):
-    liste_boolean_prime = [True for _ in range(0, n+1)]
+    liste_boolean_prime = [True for _ in range(0, n)]
     liste_boolean_prime[0] = False
     liste_boolean_prime[1] = False
     for i in range(2, n):

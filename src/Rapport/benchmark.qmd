@@ -1,7 +1,6 @@
 ---
 title: "Benchmark entre Pytho et Julia"
 format: html
-jupyter: julia-1.10
 ---
 # Principe
 Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu'il s'agisse d'un langage "compiled just in time" et que python soit un langage interprété (supposé plus lent).
@@ -15,16 +14,16 @@ Puisqu'il s'agit de boucle for, le temps de calcul nécessaire peut rapidement a
 # Code
 
 ## Python
-Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.
+Pour executer le code Python, on utilise  le package `PyCall` qui permet de coder en Python dans Julia.
 
-```{julia}
+```r
 using PyCall
 
 py"""
 import time
 
 def cribble_erathostene(n=7):
-    liste_boolean_prime = [True for _ in range(0, n+1)]
+    liste_boolean_prime = [True for _ in range(0, n)]
     liste_boolean_prime[0] = False
     liste_boolean_prime[1] = False
     for i in range(2, n):
@@ -39,20 +38,15 @@ def cribble_erathostene(n=7):
 
 cribble_erathostene_python = py"cribble_erathostene"
 
-function cribble_erathostene_julia_time(n::Int64)
-    @time cribble_erathostene_julia(n)
+function cribble_erathostene_python_time(n::Int64)
+    @time cribble_erathostene_python(n)
 end
-
-@bind n Slider(10:10:1000, show_value=true)
-cribble_erathostene_python_time(n)
 ```
 
 ## Julia
-```{julia}
-using PlutoUI
-
+```r
 function cribble_erathostene_julia(n::Int64)
-    list_boolean_prime = ones(Bool,n+1)
+    list_boolean_prime = ones(Bool,n)
     list_boolean_prime[1] = false
 
     for i in range(2,n)
@@ -75,10 +69,11 @@ end
 function cribble_erathostene_julia_time(n::Int64)
     @time cribble_erathostene_julia(n)
 end
-
-@bind n Slider(10:10:1000, show_value=true)
-cribble_erathostene_julia_time(n)
 ```
 
 # A vous de jouer
-Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser
+Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser `cribble_erathostene_python`, `cribble_erathostene_python_time`, `cribble_erathostene_julia`, `cribble_erathostene_julia_time` pour tester les fonctions.
+
+# Comparaison
+
+# Conclusion

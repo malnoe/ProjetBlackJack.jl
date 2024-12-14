@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "Journal.html",
+    "href": "Journal.html",
+    "title": "Journal de suivi du projet",
+    "section": "",
+    "text": "Entrées du journal\n\nJeudi 26/09 : Nous avons réfléchi ensemble au projet que nous souhaitions faire. Nous sommes tombés d’accord sur le jeu du blackjack qui nous permet de travailler sur l’apprentissage de R et de Julia avec la possibilité de passer à un affichage graphique du jeu. Nous avons posé les règles du jeu et mis de côté quelques mécaniques telle que le bet (pari avec des jetons), le fait d’avoir plusieurs joueurs et la présence d’un timer. Nous avons également discuté de la structure du projet en Julia et de comment faire pour coder le jeu. Nous avons créé les fichiers carte.jl, deck.jl, jeu.jl, main.jl, et nous avons tenté - infructueusement - de définir une structure de carte.\nMardi 01/10 : Mise en commun de ce qu’a cherché Lancelot durant le weekend : fonction de création de carte, de deck de 52 cartes, de deck de blackjack et mélanger un deck. Reflexions sur l’affichage : dash.jl, maki.jl, pluto.jl -&gt; pour faire du html / javascript et avoir quelque chose d’intéractif. Question en cours sur les notions de simple vs multiple dispatching auxquelles Remy a répondu. Difficultés avec la mise en place de github : on choisit de partir sur un fonctionnement en fork pour séparer notre travail et éviter les problèmes de merge.\nMercredi 02/10 : Ré-adaptation des fonction de création de deck de blackjack et de mélange de deck. On a créé 2 fonctions shuffle et shuffle! dans le but d’éviter de devoir recréer le deck de blackjack à chaque partie (dans une session), seulement au début de la session ce qui parait plus optimisé. Problématique pour surcharger / étendre les fonction shuffle(!) déjà existantes dans la librairie Random, on l’importe explicitement. Creation des fonctions de calculs de la valeur d’une main et de tirer une carte. Première version d’une boucle de jeu à 1 joueur basique. On a appris comment demander à un utilisateur de rentrer quelque chose dans le terminal. Choix d’avoir une seule struct Deck à la fois pour le paquet de carte et pour les mains puisque les deux sont composés d’un Vect de Carte.\nJeudi 03/10: Mise en commun de ce que chacun a fait Mercredi. On a réparé et amélioré les boucles d’affichage de la valeur d’une main et de la boucle de jeu (problèmes sur les conditions de fin de jeu) et création d’une fonction d’affichage de la main du joueur (les cartes). On a fait plusieurs parties pour tester (et repérer les erreurs). On s’est rendu compte qu’il y avait une version amércaine et une version européenne des règles, on décide de partir sur la version européenne pour le moment car la règle supplémentaire des américains est basée sur la notion de pari / bet que l’on a pas implémentée. On a appris à faire concaténation de String avec s1 * s2.\nMardi 08/10 : On a appris à créer des pull request et résoudre les conflits sur GitHub à partir du travail qu’avait fait Danielle durant le weekend. Création de module pour les appeler dans pluto. Création du pluto avec les fonctions dedans. Vizagrams -&gt; Création de svg qui s’affichent dans pluto.\nJeudi 10/10 : Version du blackjack en Python. Elle semble + lente mais à tester précisément, simple à mettre en place une fois qu’on avait fait le travail en Julia. Version du blackjack dans R: on a vraiment vu la difference entre R et Julia. Julia ne change pas les classes des var lors de l’utilisation de fonctions, ce qui n’est pas le cas dans R. Par exemple, en appliquant la fonction “sample” R change la classe deck en classe list. Pour éviter cette modification, on a utilisé Deck(sample(…)). On a aussi utilisé explicitement le single dispatching dans R en utilisant pour shuffle la UseMethod.\nMardi 15/10 : Corrections du code pour tout mettre en anglais. On a essayé de faire l’affichage avec Pluto et autres packages d’affichage.\nJeudi 17/10 : On a une ébauche (bugué) de notebook Pluto pour le jeu. On essaye donc de réparer ça parce que les boutons ne font pas ce que l’on veut (problème de réinitialisation, on ne sait pas ce que modifie le notebook en premier et donc est-ce que les modifications sont bien faites dans l’ordre). Possibilités : passer en markdown, nettoyer le code pour séparer les calculs et l’affichage en faisant des fonctions. On veut aussi implémenter le fait d’afficher des images dans le notebook. On a également travaillé sur un deuxième projet mettant en oeuvre le simple/multiple dispatching (R/Julia) avec du calcul de dérivées.\nLundi 21/10 : Essai de nettoyer un peu le notebook Pluto. Recherche de moyen de debbug un notebook pluto mais ça n’est pas disponible directement dans Pluto et la librairie (https://github.com/disberd/PlutoVSCodeDebugger.jl) proposant de le faire dans VSCode n’a pas été update depuis plusieurs mois (presque 1an) donc pas utilisable. Il est aussi dificile d’effectuer du débug cochon (mettre des print partout pour voir les valeurs des variables). Première mise à jour du notebook Pluto, sentiment qu’on est pas loin mais toujours soucis de mémoire de la valeur de player_action, à terminer.\nJeudi 24/10 : On a fait une autre version de la fonction jeu, en divisant la fonction en plusieurs fonctions pour pouvoir juste les appeler pour faire run au jeu dans le terminal et dans Pluto. On a fix les boutons hit, stand, new game dans Pluto avec Vizigram. Toujours un problème dans le Pluto : au début on pensait que c’était parce qu’on n’avait pas le temps de changer la valeur du bouton et donc on a pensé à mettre un sleep dans la boucle pour avoir le temps de cliquer sur les boutons pour changer la valeur de l’input MAIS en fait ça ne marche pas, on ne peut pas update les boutons tant que la fonction game() n’est pas terminée. Autre idée : un wait(condition) pour forcer à changer la valeur du bouton mais c’est un peu flou et risque de ne pas marcher non plus.\nVacances Toussaint : Fini le benchmark de Python et Julia (appel avec le package PyCall). Boucle pour le jeu dans le terminal sans boucle while : on passe par une fonction récursive. Après avoir joué, on regarde si la partie est terminée, si ça n’est pas le cas alors on rejoue.\nMardi 05/11 : Ajout de la documentation sur toutes les fonctions (hors notebook). Petite correction sur la boucle de jeu pour la condition de fin qui était inexacte.\n7/11, 12/11, 14/11 : On a travaillé sur le rapport (quarto) et sur le notebook à partir de l’exemple de jeu du package Toto.jl de Remy. On a enfin un pluto notebook fonctionnel."
+  },
+  {
+    "objectID": "dispatching.html",
+    "href": "dispatching.html",
+    "title": "Illustration du simple et multiple dispatching : calculateur de dérivées",
+    "section": "",
+    "text": "Explication idée"
+  },
+  {
+    "objectID": "dispatching.html#r",
+    "href": "dispatching.html#r",
+    "title": "Illustration du simple et multiple dispatching : calculateur de dérivées",
+    "section": "R",
+    "text": "R"
+  },
+  {
+    "objectID": "dispatching.html#julia",
+    "href": "dispatching.html#julia",
+    "title": "Illustration du simple et multiple dispatching : calculateur de dérivées",
+    "section": "Julia",
+    "text": "Julia"
+  },
+  {
+    "objectID": "benchmark.html",
+    "href": "benchmark.html",
+    "title": "Benchmark entre Pytho et Julia",
+    "section": "",
+    "text": "Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu’il s’agisse d’un langage “compiled just in time” et que python soit un langage interprété (supposé plus lent).\nLa fonction que nous utilisons est un cribble d’erathostene prennant en paramètres un entier naturel n et renvoyant la liste des entiers naturels premiers strictement plus petits que n.\nConcrètement, on crée une liste de taille n remplie de booléens mis à true. Pour i allant de 2 à n, on regarde si les entiers j de i+1 à n sont des multiples de i, si c’est le cas on les notes comme non premiers dans la liste de booléens. Après la boucle, on renvoie les index de la liste qui sont à true.\nPuisqu’il s’agit de boucle for, le temps de calcul nécessaire peut rapidement augmenter."
+  },
+  {
+    "objectID": "benchmark.html#python",
+    "href": "benchmark.html#python",
+    "title": "Benchmark entre Pytho et Julia",
+    "section": "Python",
+    "text": "Python\nPour executer le code Python, on utilise le package PyCall qui permet de coder en Python dans Julia.\nusing PyCall\n\npy\"\"\"\nimport time\n\ndef cribble_erathostene(n=7):\n    liste_boolean_prime = [True for _ in range(0, n)]\n    liste_boolean_prime[0] = False\n    liste_boolean_prime[1] = False\n    for i in range(2, n):\n        for j in range(i + 1, n):\n            if liste_boolean_prime[j]:\n                if divmod(j, i)[1] == 0:\n                    liste_boolean_prime[j] = False\n\n    index_primes = [i for i, x in enumerate(liste_boolean_prime) if x]\n    return index_primes\n\"\"\"\n\ncribble_erathostene_python = py\"cribble_erathostene\"\n\nfunction cribble_erathostene_python_time(n::Int64)\n    @time cribble_erathostene_python(n)\nend"
+  },
+  {
+    "objectID": "benchmark.html#julia",
+    "href": "benchmark.html#julia",
+    "title": "Benchmark entre Pytho et Julia",
+    "section": "Julia",
+    "text": "Julia\nfunction cribble_erathostene_julia(n::Int64)\n    list_boolean_prime = ones(Bool,n)\n    list_boolean_prime[1] = false\n\n    for i in range(2,n)\n        for j in range(i+1,n)\n            # Si j est potentiellement premier\n            if (list_boolean_prime[j])\n                # Si i divise j\n                if (rem(j,i) == 0)\n                    # j n'est pas premier\n                    list_boolean_prime[j] = false\n                end\n            end\n        end\n    end\n    # On retourne les index de list_boolean_prime dont la valeur est true.\n    index_primes = findall(list_boolean_prime)\n    return index_primes\nend\n\nfunction cribble_erathostene_julia_time(n::Int64)\n    @time cribble_erathostene_julia(n)\nend"
+  },
+  {
+    "objectID": "blackjack.html",
+    "href": "blackjack.html",
+    "title": "Projet jeu du blackjack",
+    "section": "",
+    "text": "Le blackjack oppose le joueur et le dealer (maitre du jeu). L’objectif pour le joueur est d’avoir plus de points que le dealer à la fin de la partie mais sans dépasser 21 auquel cas il perd immédiatement.\n\n\n\n\nCartes de 2 à 10 -&gt; valeur de la carte\nCartes Valet, Dame, Roi -&gt; 10\nCarte As -&gt;\n\n11 si en ajoutant 11 à la main, le score est inférieur ou égal à 21.\n1 si en ajoutant 11, le score dépasse 21.\n\n\n\n\n\n\n6 jeux de 52 cartes (pas de joker) sont mélangés ensemble pour former un seul jeu.\nLe joueur appuie sur un bouton pour démarrer la partie.\nLe programme distribue deux cartes faces visibles au joueur.\nLe programme distribue une carte face visible au dealer.\nLes points du joueur et du dealer sont calculés et affichés au joueur.\nLe joueur doit choisir entre prendre une nouvelle carte pour changer son score (A) ou s’arrêter et laisser le programme résoudre la fin de jeu (B) :\n\nA. Il prend une nouvelle carte :\nSi son score est égal à 21, la partie est finie et le joueur a gagné.\nSi son score est strictement supérieur à 21, la partie est finie et le joueur a perdu.\nSi son score est strictement inférieur à 21, il doit à nouveau choisir entre reprendre une carte (A) ou s’arrêter (B).\nB. Il décide de s’arretter, le programme résoud la fin de jeu :\nSi le score du dealer est strictement inférieur à 17, le dealer pioche une nouvelle carte face visible jusqu’à avoir un score supérieur ou égal à 18.\nSi le score du dealer est supérieur ou égal à 18, on regarde qui a gagné dans cet ordre précis :\n\nLe joueur à plus de 21 points : le dealer gagne.\nLe dealer a plus de 21 points : le joueur gagne.\nLe joueur et le dealer ont le même score : égalité\nSinon, celui qui a le plus de points gagne."
+  },
+  {
+    "objectID": "blackjack.html#lobjectif-du-jeu",
+    "href": "blackjack.html#lobjectif-du-jeu",
+    "title": "Projet jeu du blackjack",
+    "section": "",
+    "text": "Le blackjack oppose le joueur et le dealer (maitre du jeu). L’objectif pour le joueur est d’avoir plus de points que le dealer à la fin de la partie mais sans dépasser 21 auquel cas il perd immédiatement."
+  },
+  {
+    "objectID": "blackjack.html#les-valeurs-des-cartes",
+    "href": "blackjack.html#les-valeurs-des-cartes",
+    "title": "Projet jeu du blackjack",
+    "section": "",
+    "text": "Cartes de 2 à 10 -&gt; valeur de la carte\nCartes Valet, Dame, Roi -&gt; 10\nCarte As -&gt;\n\n11 si en ajoutant 11 à la main, le score est inférieur ou égal à 21.\n1 si en ajoutant 11, le score dépasse 21."
+  },
+  {
+    "objectID": "blackjack.html#le-déroulement-dune-partie-dans-le-programme",
+    "href": "blackjack.html#le-déroulement-dune-partie-dans-le-programme",
+    "title": "Projet jeu du blackjack",
+    "section": "",
+    "text": "6 jeux de 52 cartes (pas de joker) sont mélangés ensemble pour former un seul jeu.\nLe joueur appuie sur un bouton pour démarrer la partie.\nLe programme distribue deux cartes faces visibles au joueur.\nLe programme distribue une carte face visible au dealer.\nLes points du joueur et du dealer sont calculés et affichés au joueur.\nLe joueur doit choisir entre prendre une nouvelle carte pour changer son score (A) ou s’arrêter et laisser le programme résoudre la fin de jeu (B) :\n\nA. Il prend une nouvelle carte :\nSi son score est égal à 21, la partie est finie et le joueur a gagné.\nSi son score est strictement supérieur à 21, la partie est finie et le joueur a perdu.\nSi son score est strictement inférieur à 21, il doit à nouveau choisir entre reprendre une carte (A) ou s’arrêter (B).\nB. Il décide de s’arretter, le programme résoud la fin de jeu :\nSi le score du dealer est strictement inférieur à 17, le dealer pioche une nouvelle carte face visible jusqu’à avoir un score supérieur ou égal à 18.\nSi le score du dealer est supérieur ou égal à 18, on regarde qui a gagné dans cet ordre précis :\n\nLe joueur à plus de 21 points : le dealer gagne.\nLe dealer a plus de 21 points : le joueur gagne.\nLe joueur et le dealer ont le même score : égalité\nSinon, celui qui a le plus de points gagne."
+  },
+  {
+    "objectID": "blackjack.html#jeu-dans-le-terminal",
+    "href": "blackjack.html#jeu-dans-le-terminal",
+    "title": "Projet jeu du blackjack",
+    "section": "Jeu dans le terminal",
+    "text": "Jeu dans le terminal\n\nStructure\n\nFichier carte.jl : Pour définir la classe carte (attributs : String nom, Int valeur, image interface graphique)\nFichier deck.jl : Pour définir la classe deck (attributs : list de carte, méthode : distribuer une carte (choisir une carte au hasard, la mettre dans la main de quelqu’un et l’enlever dans la liste de carte du deck))\nFichier jeu.jl : Pour définir la classe de jeu (attributs : deck, deux main_cartes (dealer et joueur))\nFichier main_terminal.jl : fonction générale avec les boucles de jeu permettant de jouer depuis le terminal.\n\n\n\nA vous de jouer !\nUne fois le package installé et appelé depuis votre terminal, tappez la commande suivante pour tester : ProjetBlackJack.PlayGame.game()"
+  },
+  {
+    "objectID": "blackjack.html#jeu-dans-un-notebook-pluto",
+    "href": "blackjack.html#jeu-dans-un-notebook-pluto",
+    "title": "Projet jeu du blackjack",
+    "section": "Jeu dans un notebook Pluto",
+    "text": "Jeu dans un notebook Pluto\n\nStructure\n\nOn réutilise les strucures et fonctions des fichiers carte.jl et deck.jl\nFichier jeu_pluto_notebook.jl : Module des fonctions pour le pluto permettant d’initialiser une partie, de gérer un tour de jeu en fonction des actions du jeu, fonctions d’affichage des boutons et du texte du jeu avec Vizagram.\n\n\n\nUne longue route avant la réussite\nCette partie nous a posé problème pendant longtemps, nous avions réussi à créer les boutons (“New Game”, “Hit”, “Stand”) mais nous n’arrivions pas à gérer la définition et la mise à jour des variables liées aux boutons : on ne pouvait pas mettre à jour les boutons tant que la partie n’était pas terminée. Nous avons notamment essayé de trouver un moyen de debbug un notebook pluto mais ce n’est pas disponible directement dans Pluto, et la librairie (https://github.com/disberd/PlutoVSCodeDebugger.jl) proposant de le faire dans VSCode n’a pas été mise à jour depuis plusieurs mois (presque 1an) donc pas utilisabel. Une archive de nos essais se trouve dans le dossier blackjack_julia/Essai1_PlutoNotebook_NotWorking. Finalement, nous avons réussi à construire un notebook fonctionnel en reprenant l’exemple du notebook proposé par Remy. On a première cellule qui nous permet d’appeler toutes les packages nécessaire et à initialiser la partie. On a une cellule affichant l’état du jeu grâce à la fonction interaction et une cellule avec des boutons reliés à une variable d’état du jeu.\n\n\nA vous de jouer !\nPour jouer au notebook, tappez la commande suivante dans le terminal : blackjack_notebook().\nRemarque : C’est tout à fait normal si au début le notebook affiche une erreur, il faut attendre quelques secondes."
+  },
+  {
+    "objectID": "blackjack.html#jeu-dans-le-terminal-1",
+    "href": "blackjack.html#jeu-dans-le-terminal-1",
+    "title": "Projet jeu du blackjack",
+    "section": "Jeu dans le terminal",
+    "text": "Jeu dans le terminal\n\nStrucure\n\nFichier Cartes_et_Deck.R : Pour définir les définition de cartes et de deck, et les fonctions à utiliser et à appeler dans le jeu.\nFichier le_jeu.R : Pour définir un fonction pour initialiser le jeu, une autre pour afficher le statut de la partie et une pour saisir la réponse du joueur dans le terminal. Définir aussi la fonction jeu qui appelle les autres fontions pour faire run au jeu.\n\n\n\nA vous de jouer !\nPour lancer le jeu depuis le terminal R :\nlibrary(blackjack)\njeu()"
+  },
+  {
+    "objectID": "blackjack.html#jeu-avec-rshiny",
+    "href": "blackjack.html#jeu-avec-rshiny",
+    "title": "Projet jeu du blackjack",
+    "section": "Jeu avec RShiny",
+    "text": "Jeu avec RShiny\n\nStructure\n\nFichier shinyapp.r : En utilisant comme source le fichier Cartes_et_Deck.R, initialiser le jeu, décrire un path pour les images à utiliser dans le jeu, créer des boutons pour les actions du joueur (“New Game”, “Hit”, “Stand”), afficher une console intéractive pour pouvoir jouer.\n\n\n\nA vous de jouer !\nPour lancer le shiny depuis le terminal R :\nlibrary(blackjack)\nshiny::runApp(system.file(\"shinyapp\", package = \"blackjack\"))"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rapport du projet",
+    "section": "",
+    "text": "Noms : Lancelot Ravier, Danielle El Khoury, Garance Malnoë\nBienvenue sur notre rapport !\nNous avons travaillé sur trois sous-projets qui ont chacun une page dédiée :\n\nUn jeu de blackjack en Julia, Python et R jouable depuis le terminal et depuis des interfaces graphiques.\nUn calculateur de dérivée en Julia et R, pour mettre en évidence l’utilité du multiple-dispatching de Julia.\nUn benchmark entre Julia, Python et C++ à partir du cribble d’Erathostene.\n\nPour mieux comprendre le processus de création, la page journal regroupe nos réflexions tout au long du projet.\n\nPour installer le package Julia : Ajoutez le package depuis Pkg avec l’url https://github.com/malnoe/ProjetBlackJack.jl et pour connaitre les fonctions disponible dans ce package utilisez help().\nPour installer le package R : Executez le code R suivant :\n\nif (!require(\"devtools\")) install.packages(\"devtools\")\ndevtools::install_github(\"da-n-ta/blackjack\")"
+  }
+]

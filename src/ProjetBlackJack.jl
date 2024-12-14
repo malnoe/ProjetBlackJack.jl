@@ -13,7 +13,7 @@ function blackjack_notebook()
     notebook_url = "https://raw.githubusercontent.com/malnoe/ProjetBlackJack.jl/master/examples/blackjack_notebook.jl"
     
     # Emplacement temporaire pour télécharger le fichier
-    temp_notebook_path = joinpath(tempdir(), "blackjack_notebook.jl")
+    temp_notebook_path = joinpath(homedir(),"Downloads", "blackjack_notebook.jl")
 
     # Télécharger le fichier
     Downloads.download(notebook_url, temp_notebook_path)
@@ -26,7 +26,7 @@ function help()
     println("Fonction utiles :")
     println(" ")
     println("1. Blackjack Julia :")
-    println("ProjetBlackJack.PlayGame.game(), blackjack_notebook()")
+    println("ProjetBlackJack.PlayGame.game(), blackjack_notebook_windows()")
     println("")
     println("2. Benchmarck :")
     println(" ProjetBlackJack.Benchmark.cribble_erathostene_python(n),  ProjetBlackJack.Benchmark.cribble_erathostene_python_time(n),  ProjetBlackJack.Benchmark.cribble_erathostene_julia(n),  ProjetBlackJack.Benchmark.cribble_erathostene_julia_time(n)")

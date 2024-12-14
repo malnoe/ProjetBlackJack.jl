@@ -12,13 +12,13 @@ website:
       - href : blackjack.qmd
         text : Blackjack
 
-      - href : benchmark.qmd
-        text : Benchmark
-
       - href : dispatching.qmd
         text : Dispatching
 
-      - href : journal.qmd
+      - href : benchmark.qmd
+        text : Benchmark
+
+      - href : Journal.qmd
         text : Journal
 
 format:

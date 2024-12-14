@@ -186,8 +186,9 @@ def jeu():
     return
         
 """
-
-blackjack_python = py"jeu()"
+function blackjack_python()
+    py"jeu()"
+end 
 
 export blackjack_python
 end

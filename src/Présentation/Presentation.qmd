@@ -128,5 +128,26 @@ format:
 - On remarque que Julia prend toujours moins de temps que Python
 - Pour des valeurs de N relativement petite, la différence peur être considérée négligeable
 - Alors que pour de grandes valeurs de N, on remarque une différence de plus d'une minute.
+
 ---
+
 ## Dispatching
+
+- Le dispatche est u nprocessus de sélection et d'exécution dynamique ou statique de la méthode ou fonction appropriée en fonction du type, du contexte ou des arguments de l'appel.
+
+<img src="images/dispatching.gif" alt="dispatching" width="1000" height="400">
+
+---
+
+### Simple Dispatching (R)
+
+- Repose que sur le premier argument de la fonction. L'execution nécessite des verifications manuelles dans chaque méthode (plus lourd à executer). L'ajout de nouveaux cas nécessite de modifier le code existant (code moins maintenable)
+
+<img src="images/simpl.png" alt="simple dispatching">
+
+---
+
+### Multiple Dispatching (Julia)
+- Permet de définir des méthodes spécifiques pour chaque combinaisons de types d'arguments d'une fonction. L'ajout d'une nouvelle méthode se fait indépendemment des méthodes déjà créées (simplification du code et de la moddification) et aucune verification manuelle n'est donc nécessaire (moins lourd à executer)
+
+<img src="images/multiple.png" alt="multiple dispatching">

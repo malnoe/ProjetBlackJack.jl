@@ -16,12 +16,12 @@ multiply <- function(x, y) {
 
 # Méthode pour les matrices
 multiply.matrix <- function(x, y) {
-  if (is.matrix(x) && is.matrix(y)) { # Etape de verificatiopn
+  if (is.matrix(x) && is.matrix(y)) { # Etape de verification
     return(x %*% y)  # Multiplication matricielle
   } else if (is.matrix(x) && is.numeric(y)) {
     return(x * y)  # Multiplication élément par élément
   } else {
-    stop("Invalid types for matrix multiplication")
+    stop("x ou y invalides")
   }
 }
 
@@ -32,7 +32,7 @@ multiply.numeric <- function(x, y) {
   } else if (is.numeric(x) && is.matrix(y)) {
     return(x * y)  # Multiplication élément par élément
   } else {
-    stop("Invalid types for numeric multiplication")
+    stop("x ou y invalides")
   }
 }
 ```
@@ -41,7 +41,6 @@ multiply.numeric <- function(x, y) {
 # Multiple dispatching (Julia) :
 
 Le multiple dispatching permet de définir des méthodes spécifiques pour chaque combinaisons de types d'arguments pour une fonction donnée, sans vérifications manuelles supplémentaires.
-En Julia, le multiple dispatching permet de définir des méthodes spécifiques pour chaque combinaison de types d'arguments, sans vérifications manuelles supplémentaires.
 
 ```{julia}
 # Méthode pour deux matrices
@@ -83,7 +82,7 @@ multiply.matrix <- function(x, y) {
   } else if (is.matrix(x) && is.numeric(y)) {
     return(x * y)  # Multiplication élément par élément (vecteur)
   } else {
-    stop("Invalid types for matrix multiplication")
+    stop("x ou y invalides")
   }
 }
 ```

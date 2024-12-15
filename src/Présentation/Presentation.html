@@ -6,9 +6,8 @@
 <script src="Presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="Presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="Presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="Presentation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="Presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+<link href="Presentation_files/libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.32">
 
   <meta name="author" content="EL KHOURY Danielle, MALNOE Garance, RAVIER Lancelot">
   <title>Projets Julia/R/Python</title>
@@ -30,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="Presentation_files/libs/revealjs/dist/theme/quarto-2ff78e2e6999b6200d15f6cb181d00bd.css">
   <link rel="stylesheet" href="assets/styles.css">
   <link href="Presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -517,21 +516,40 @@ Python pour N=10000
 <ul>
 <li>On remarque que Julia prend toujours moins de temps que Python</li>
 <li>Pour des valeurs de N relativement petite, la différence peur être considérée négligeable</li>
-<li>Alors que pour de grandes valeurs de N, on</li>
+<li>Alors que pour de grandes valeurs de N, on remarque une différence de plus d’une minute.</li>
 </ul>
+</section>
+<section id="dispatching" class="slide level2">
+<h2>Dispatching</h2>
+<ul>
+<li>Le dispatche est u nprocessus de sélection et d’exécution dynamique ou statique de la méthode ou fonction appropriée en fonction du type, du contexte ou des arguments de l’appel.</li>
+</ul>
+<p><img src="images/dispatching.gif" alt="dispatching" width="1000" height="400"></p>
 </section>
 <section class="slide level2">
 
-<h3 id="un-graphique">Un graphique</h3>
-<div class="quarto-auto-generated-content">
+<h3 id="simple-dispatching-r">Simple Dispatching (R)</h3>
+<ul>
+<li>Repose que sur le premier argument de la fonction. L’execution nécessite des verifications manuelles dans chaque méthode (plus lourd à executer). L’ajout de nouveaux cas nécessite de modifier le code existant (code moins maintenable)</li>
+</ul>
+
+<img src="images/simpl.png" alt="simple dispatching" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="multiple-dispatching-julia">Multiple Dispatching (Julia)</h3>
+<ul>
+<li>Permet de définir des méthodes spécifiques pour chaque combinaisons de types d’arguments d’une fonction. L’ajout d’une nouvelle méthode se fait indépendemment des méthodes déjà créées (simplification du code et de la moddification) et aucune verification manuelle n’est donc nécessaire (moins lourd à executer)</li>
+</ul>
+
+
+<img src="images/multiple.png" alt="multiple dispatching" class="r-stretch"></section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="images/uga_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
-</div>
-</section></section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="Presentation_files/libs/revealjs/dist/reveal.js"></script>
@@ -560,7 +578,8 @@ Python pour N=10000
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -714,7 +733,7 @@ Python pour N=10000
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

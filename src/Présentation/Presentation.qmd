@@ -36,7 +36,7 @@ Le blackjack oppose le joueur et le dealer (maitre du jeu). L'objectif pour le j
     - 11 si en ajoutant 11 à la main, le score est inférieur ou égal à 21.
     - 1 si en ajoutant 11, le score dépasse 21.
 
-## Le déroulement d'une partie dans le programme
+## Le déroulement d'une partie
 - 6 jeux de 52 cartes (pas de joker) sont mélangés ensemble pour former un seul jeu. 
 - Le joueur appuie sur un bouton pour démarrer la partie.
 - Le programme distribue deux cartes faces visibles au joueur.
@@ -49,7 +49,7 @@ Le blackjack oppose le joueur et le dealer (maitre du jeu). L'objectif pour le j
   - Si son score est strictement supérieur à 21, la partie est finie et le joueur a perdu.
   - Si son score est strictement inférieur à 21, il doit à nouveau choisir entre reprendre une carte (A) ou s'arrêter (B).
 
-## **B**. Il décide de s'arretter, le programme résoud la fin de jeu :
+## **B**. Il décide de s'arretter :
   - Si le score du dealer est strictement inférieur à 17, le dealer pioche une nouvelle carte face visible jusqu'à avoir un score supérieur ou égal à 18.
   - Si le score du dealer est supérieur ou égal à 18, on regarde qui a gagné dans cet ordre précis :
     - Le joueur à plus de 21 points : le dealer gagne.
@@ -108,59 +108,84 @@ On peut aussi jouer avec un aspect graphique en Rshiny qui permet notamment d'av
 - Le joueur choisi avec les touches du clavier : Y/y et N/n.
 <img src="images/blackjack_python.png" alt="Exemple de partie" style="width:50%">
 
-# Benchmark Julia vs Python
+# Deuxième projet : benchmark Julia vs Python
 ---
 ## Principe
-Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu'il s'agisse d'un langage "compiled just in time" et que python soit un langage interprété (supposé plus lent).
+Pour comparer les deux langages, nous comparons leurs performances en termes de **temps de calcul sur une même fonction** comptant plusieurs boucles. 
+
+Nous voulons notamment vérifier si les calculs sont plus rapides en **Julia** grace au fait qu'il s'agisse d'un **langage "compiled just in time"** et que **Python** soit un **langage interprété** (supposé plus lent).
 
 ## Algorithme de test
-On test à partir du cribble d'erathostene prennant en paramètres un entier naturel n et renvoyant la liste des entiers naturels premiers strictement plus petits que n.
+On test à partir du **cribble d'erathostene** prennant en paramètres un entier naturel n et renvoyant la liste des entiers naturels premiers strictement plus petits que n.
 
-Concrètement, on crée une liste de taille n remplie de booléens mis à true. Pour i allant de 2 à n, on regarde si les entiers j de i+1 à n sont des multiples de i, si c'est le cas on les notes comme non premiers dans la liste de booléens. Après la boucle, on renvoie les index de la liste qui sont à true.
+Concrètement, on crée une **liste de taille n** remplie de booléens mis à true. Pour **i allant de 2 à n**, on regarde si les entiers **j de i+1 à n** sont des multiples de i, si c'est le cas on les notes comme non premiers dans la liste de booléens. Après la boucle, on renvoie les index de la liste qui sont à true : se sont les entiers premiers.
 
-Puisqu'il s'agit de boucle for, le temps de calcul nécessaire peut rapidement augmenter.
+Puisqu'il s'agit de **boucle for**, le temps de calcul nécessaire peut rapidement augmenter.
 
 ## Résultats
 
+Pour différentes valeurs de n, on compare le nombre de secondes nécessaire pour chaque langage.
+
 <div class="two-images">
 <figure>
-    <img src="images/benchjulia1000.png" alt="Julia pour N=1000">
-    <figcaption>Julia pour N=1,000</figcaption>
+    <img src="images/julia_10.png" alt="Julia pour n=10">
+    <figcaption>Julia pour n=10</figcaption>
   </figure>
   <figure>
-    <img src="images/benchpy1000.png" alt="Python pour N=1000">
-    <figcaption>Python pour N=1,000</figcaption>
+    <img src="images/python_10.png" alt="Python pour n=10">
+    <figcaption>Python pour n=10</figcaption>
   </figure>
 </div>
 
 <div class="two-images">
 <figure>
-    <img src="images/benchjulia10000.png" alt="Julia pour N=10000">
-    <figcaption>Julia pour N=10,000</figcaption>
+    <img src="images/julia_100.png" alt="Julia pour n=100">
+    <figcaption>Julia pour n=100</figcaption>
   </figure>
   <figure>
-    <img src="images/benchpy10000.png" alt="Python pour N=10000">
-    <figcaption>Python pour N=10,000</figcaption>
+    <img src="images/python_100.png" alt="Python pour n=100">
+    <figcaption>Python pour n=100</figcaption>
   </figure>
 </div>
 
 <div class="two-images">
 <figure>
-    <img src="images/benchjulia100000.png" alt="Julia pour N=100000">
-    <figcaption>Julia pour N=100,000</figcaption>
+    <img src="images/julia_1k.png" alt="Julia pour n=1k">
+    <figcaption>Julia pour n=1k</figcaption>
   </figure>
   <figure>
-    <img src="images/benchpy100000.png" alt="Python pour N=100000">
-    <figcaption>Python pour N=100,000</figcaption>
+    <img src="images/python_1k.png" alt="Python pour n=1k">
+    <figcaption>Python pour n=1k</figcaption>
   </figure>
 </div>
+
+<div class="two-images">
+<figure>
+    <img src="images/julia_100k.png" alt="Julia pour n=100k">
+    <figcaption>Julia pour n=100k</figcaption>
+  </figure>
+  <figure>
+    <img src="images/python_100k.png" alt="Python pour n=100k">
+    <figcaption>Python pour n=100k</figcaption>
+  </figure>
+</div>
+
+## Résultats
+<div style="text-align: center;">
+  <img src="images/graphique_benchmark.png" alt="Graphique Benchmark" style="max-width: 50%; max-height: 50%;">
+</div>
+Lengende : <font color="forestgreen"> Python </font> vs <font color="purple"> Julia </font>. 
+
 
 ## Conclusions
-- On remarque que Julia prend toujours moins de temps que Python
-- Pour des valeurs de N relativement petite, la différence peur être considérée négligeable
-- Alors que pour de grandes valeurs de N, on remarque une différence de plus d'une minute.
+- Pour de relativement petites valeurs de n (- de 1000), la différence entre Julia et Python est négligeable.
+- Au delà de 1000, la différence entre les deux langage devient bien plus nette :
+  - Python prend plus de temps de que Julia.
+  - Le temps de calcul nécessaire croit plus rapidement pour Python que pour Julia.
 
-# Dispatching
+On remarque également que Python nécessite plus d'allocations que Julia.
+
+# Troisième projet : single vs multiple dispatching
 ## Idée
 ## R
 ## Julia

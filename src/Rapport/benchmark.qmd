@@ -72,8 +72,83 @@ end
 ```
 
 # A vous de jouer
-Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser `cribble_erathostene_python`, `cribble_erathostene_python_time`, `cribble_erathostene_julia`, `cribble_erathostene_julia_time` pour tester les fonctions.
+Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser `ProjetBlackJack.Benchmark.cribble_erathostene_python`, `ProjetBlackJack.Benchmark.cribble_erathostene_python_time`, `ProjetBlackJack.Benchmark.cribble_erathostene_julia`, `ProjetBlackJack.Benchmark.cribble_erathostene_julia_time` pour tester les fonctions.
 
-# Comparaison
+# Résultats de la comparaison
+
+Pour différentes valeurs de n, on compare le nombre de secondes nécessaire pour chaque langage.
+
+### 10
+<div class="two-images">
+<figure>
+    <img src="images/julia_10.png" alt="Julia pour n=10" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Julia</figcaption>
+  </figure>
+  <figure>
+    <img src="images/python_10.png" alt="Python pour n=10" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Python</figcaption>
+  </figure>
+</div>
+
+### 100
+<div class="two-images">
+<figure>
+    <img src="images/julia_100.png" alt="Julia pour n=100" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Julia</figcaption>
+  </figure>
+  <figure>
+    <img src="images/python_100.png" alt="Python pour n=100" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Python</figcaption>
+  </figure>
+</div>
+
+### 1k
+<div class="two-images">
+<figure>
+    <img src="images/julia_1k.png" alt="Julia pour n=1k" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Julia</figcaption>
+  </figure>
+  <figure>
+    <img src="images/python_1k.png" alt="Python pour n=1k" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Python</figcaption>
+  </figure>
+</div>
+
+### 10k
+<div class="two-images">
+<figure>
+    <img src="images/julia_10k.png" alt="Julia pour n=10k" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Julia</figcaption>
+  </figure>
+  <figure>
+    <img src="images/python_10k.png" alt="Python pour n=10k" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Python</figcaption>
+  </figure>
+</div>
+
+### 100k
+<div class="two-images">
+<figure>
+    <img src="images/julia_100k.png" alt="Julia pour n=100k" style="max-width: 80%; max-height: 80%;">
+    <figcaption>Julia</figcaption>
+  </figure>
+  <figure>
+    <img src="images/python_100k.png" alt="Python pour n=100k"  style="max-width: 80%; max-height: 80%;">
+    <figcaption>Python</figcaption>
+  </figure>
+</div>
+
+### Graphique
+On voit mieux la différence en regroupant les résultats dans un graphique :
+
+<div style="text-align: center;">
+  <img src="images/graphique_benchmark.png" alt="Graphique Benchmark" style="max-width: 60%; max-height: 60%;">
+</div>
+Lengende : <font color="forestgreen"> Python </font> vs <font color="purple"> Julia </font>. 
 
 # Conclusion
+- Pour de relativement petites valeurs de n (- de 1000), la différence entre Julia et Python est négligeable.
+- Au delà de 1000, la différence entre les deux langage devient bien plus nette :
+    - Python prend plus de temps de que Julia.
+    - Le temps de calcul nécessaire croit plus rapidement pour Python que pour Julia.
+

@@ -62,9 +62,9 @@ Cette partie nous a posé problème pendant longtemps, nous avions réussi à cr
 Finalement, nous avons réussi à construire un notebook fonctionnel en reprenant l'exemple du notebook proposé par Remy. On a première cellule qui nous permet d'appeler toutes les packages nécessaire et à initialiser la partie. On a une cellule affichant l'état du jeu grâce à la fonction interaction et une cellule avec des boutons reliés à une variable d'état du jeu.
 
 ### A vous de jouer !
-Pour jouer au notebook, tappez la commande suivante dans le terminal : `blackjack_notebook()`.
+Pour jouer au notebook, tappez la commande suivante dans le terminal : `ProjetBlackJack.blackjack_notebook()`.
 
-Remarque : C'est tout à fait normal si au début le notebook affiche une erreur, il faut attendre quelques secondes.
+Remarque : C'est normal si le notebook affiche une erreur au début, il faut attendre quelques secondes.
 
 # Jeu dans R
 - Structure du code assez similaire à Julia.
@@ -84,7 +84,6 @@ library(blackjack)
 jeu()
 ```
 
-
 ## Jeu avec RShiny
 
 ### Structure
@@ -96,8 +95,11 @@ Pour lancer le shiny depuis le terminal R :
 library(blackjack)
 shiny::runApp(system.file("shinyapp", package = "blackjack"))
 ```
+
 # Jeu dans Python
+
 ## Jeu dans le terminal
+
 ### Strucutre
 La strucute est assez similaire à celle de Julia.
 - Fichier `carte` : Pour définir la class carte.
@@ -106,5 +108,5 @@ La strucute est assez similaire à celle de Julia.
 Pour pouvuoir jouer au jeu depuis le package Julia, on utilise le package PyCall.
 
 ### A vous de jouer !
-Pour jouer à la version Python, tappez la commande suivante dans le terminal : `BlackjackPython.blackjack_python()`.
+Pour jouer à la version Python, tappez la commande suivante dans le terminal : `ProjetBlackJack.BlackjackPython.blackjack_python()`.
 

@@ -165,7 +165,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
   </ul></li>
   <li><a href="#a-vous-de-jouer" id="toc-a-vous-de-jouer" class="nav-link" data-scroll-target="#a-vous-de-jouer">A vous de jouer</a></li>
-  <li><a href="#comparaison" id="toc-comparaison" class="nav-link" data-scroll-target="#comparaison">Comparaison</a></li>
+  <li><a href="#résultats-de-la-comparaison" id="toc-résultats-de-la-comparaison" class="nav-link" data-scroll-target="#résultats-de-la-comparaison">Résultats de la comparaison</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">10</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">100</a></li>
+  <li><a href="#k" id="toc-k" class="nav-link" data-scroll-target="#k">1k</a></li>
+  <li><a href="#k-1" id="toc-k-1" class="nav-link" data-scroll-target="#k-1">10k</a></li>
+  <li><a href="#k-2" id="toc-k-2" class="nav-link" data-scroll-target="#k-2">100k</a></li>
+  <li><a href="#graphique" id="toc-graphique" class="nav-link" data-scroll-target="#graphique">Graphique</a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
@@ -261,11 +269,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>A vous de jouer</h1>
 <p>Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser <code>cribble_erathostene_python</code>, <code>cribble_erathostene_python_time</code>, <code>cribble_erathostene_julia</code>, <code>cribble_erathostene_julia_time</code> pour tester les fonctions.</p>
 </section>
-<section id="comparaison" class="level1">
-<h1>Comparaison</h1>
+<section id="résultats-de-la-comparaison" class="level1">
+<h1>Résultats de la comparaison</h1>
+<p>Pour différentes valeurs de n, on compare le nombre de secondes nécessaire pour chaque langage.</p>
+<section id="section" class="level3">
+<h3 class="anchored" data-anchor-id="section">10</h3>
+<div class="two-images">
+<figure class="figure">
+<img src="images/julia_10.png" alt="Julia pour n=10" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Julia
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="images/python_10.png" alt="Python pour n=10" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Python
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1">100</h3>
+<div class="two-images">
+<figure class="figure">
+<img src="images/julia_100.png" alt="Julia pour n=100" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Julia
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="images/python_100.png" alt="Python pour n=100" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Python
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="k" class="level3">
+<h3 class="anchored" data-anchor-id="k">1k</h3>
+<div class="two-images">
+<figure class="figure">
+<img src="images/julia_1k.png" alt="Julia pour n=1k" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Julia
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="images/python_1k.png" alt="Python pour n=1k" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Python
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="k-1" class="level3">
+<h3 class="anchored" data-anchor-id="k-1">10k</h3>
+<div class="two-images">
+<figure class="figure">
+<img src="images/julia_10k.png" alt="Julia pour n=10k" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Julia
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="images/python_10k.png" alt="Python pour n=10k" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Python
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="k-2" class="level3">
+<h3 class="anchored" data-anchor-id="k-2">100k</h3>
+<div class="two-images">
+<figure class="figure">
+<img src="images/julia_100k.png" alt="Julia pour n=100k" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Julia
+</figcaption>
+</figure>
+<figure class="figure">
+<img src="images/python_100k.png" alt="Python pour n=100k" style="max-width: 80%; max-height: 80%;" class="figure-img">
+<figcaption>
+Python
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="graphique" class="level3">
+<h3 class="anchored" data-anchor-id="graphique">Graphique</h3>
+<p>On voit mieux la différence en regroupant les résultats dans un graphique :</p>
+<div style="text-align: center;">
+<p><img src="images/graphique_benchmark.png" alt="Graphique Benchmark" style="max-width: 60%; max-height: 60%;"></p>
+</div>
+<p>Lengende : <font color="forestgreen"> Python </font> vs <font color="purple"> Julia </font>.</p>
+</section>
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
+<ul>
+<li>Pour de relativement petites valeurs de n (- de 1000), la différence entre Julia et Python est négligeable.</li>
+<li>Au delà de 1000, la différence entre les deux langage devient bien plus nette :
+<ul>
+<li>Python prend plus de temps de que Julia.</li>
+<li>Le temps de calcul nécessaire croit plus rapidement pour Python que pour Julia.</li>
+</ul></li>
+</ul>
 
 
 </section>

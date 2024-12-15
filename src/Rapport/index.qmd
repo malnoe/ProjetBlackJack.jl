@@ -17,7 +17,7 @@ Nous avons travaillé sur **trois sous-projets** qui ont chacun une page dédié
 Pour mieux comprendre le processus de création, la page [journal](Journal.qmd) regroupe nos réflexions tout au long du projet.
 
 - **Pour installer le package Julia** :
-Ajoutez le package depuis Pkg avec l'url *https://github.com/malnoe/ProjetBlackJack.jl* et pour connaitre les fonctions disponible dans ce package utilisez `help()`.
+Ajoutez le package depuis Pkg avec l'url *https://github.com/malnoe/ProjetBlackJack.jl*, appelez le avec `using ProjetBlackJack`. Pour connaitre les fonctions disponibles dans ce package utilisez `help()`.
 
 - **Pour installer le package R** :
 Executez le code R suivant :

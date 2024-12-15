@@ -192,6 +192,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#a-vous-de-jouer-3" id="toc-a-vous-de-jouer-3" class="nav-link" data-scroll-target="#a-vous-de-jouer-3">A vous de jouer !</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#jeu-dans-python" id="toc-jeu-dans-python" class="nav-link" data-scroll-target="#jeu-dans-python">Jeu dans Python</a>
+  <ul class="collapse">
+  <li><a href="#jeu-dans-le-terminal-2" id="toc-jeu-dans-le-terminal-2" class="nav-link" data-scroll-target="#jeu-dans-le-terminal-2">Jeu dans le terminal</a>
+  <ul class="collapse">
+  <li><a href="#strucutre" id="toc-strucutre" class="nav-link" data-scroll-target="#strucutre">Strucutre</a></li>
+  <li><a href="#a-vous-de-jouer-4" id="toc-a-vous-de-jouer-4" class="nav-link" data-scroll-target="#a-vous-de-jouer-4">A vous de jouer !</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -303,8 +311,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-vous-de-jouer-1" class="level3">
 <h3 class="anchored" data-anchor-id="a-vous-de-jouer-1">A vous de jouer !</h3>
-<p>Pour jouer au notebook, tappez la commande suivante dans le terminal : <code>blackjack_notebook()</code>.</p>
-<p>Remarque : C’est tout à fait normal si au début le notebook affiche une erreur, il faut attendre quelques secondes.</p>
+<p>Pour jouer au notebook, tappez la commande suivante dans le terminal : <code>ProjetBlackJack.blackjack_notebook()</code>.</p>
+<p>Remarque : C’est normal si le notebook affiche une erreur au début, il faut attendre quelques secondes.</p>
 </section>
 </section>
 </section>
@@ -344,6 +352,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Pour lancer le shiny depuis le terminal R :</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(blackjack)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="fu">system.file</span>(<span class="st">"shinyapp"</span>, <span class="at">package =</span> <span class="st">"blackjack"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="jeu-dans-python" class="level1">
+<h1>Jeu dans Python</h1>
+<section id="jeu-dans-le-terminal-2" class="level2">
+<h2 class="anchored" data-anchor-id="jeu-dans-le-terminal-2">Jeu dans le terminal</h2>
+<section id="strucutre" class="level3">
+<h3 class="anchored" data-anchor-id="strucutre">Strucutre</h3>
+<p>La strucute est assez similaire à celle de Julia. - Fichier <code>carte</code> : Pour définir la class carte. - Fichier <code>deck</code> : Pour définir la class deck (main des joueurs). - Fichier <code>jeu</code> : Pour définir les fonctions de jeu. Pour pouvuoir jouer au jeu depuis le package Julia, on utilise le package PyCall.</p>
+</section>
+<section id="a-vous-de-jouer-4" class="level3">
+<h3 class="anchored" data-anchor-id="a-vous-de-jouer-4">A vous de jouer !</h3>
+<p>Pour jouer à la version Python, tappez la commande suivante dans le terminal : <code>ProjetBlackJack.BlackjackPython.blackjack_python()</code>.</p>
 
 
 </section>

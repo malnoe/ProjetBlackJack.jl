@@ -20,15 +20,18 @@ Trois sous-projets pour explorer les particularité de Julia et R.
 
 Nous avons également tenu un **journal de bord** tout au long du projet qui est disponible dans le rapport.
 
-# Jeu de blackjack
+# Premier projet : Jeu de blackjack
 
 ## L'Objectif du jeu
-Le blackjack oppose le joueur et le dealer (maitre du jeu). L'objectif pour le joueur est d'avoir plus de points que le dealer à la fin de la partie mais sans dépasser 21 auquel cas il perd immédiatement. 
+Le blackjack oppose le joueur et le dealer (maitre du jeu). L'objectif pour le joueur est d'avoir plus de points que le dealer à la fin de la partie mais sans dépasser 21 auquel cas il perd. 
 
  
 **Les valeurs des cartes**
+
 - Cartes de 2 à 10 -> valeur de la carte
+
 - Cartes Valet, Dame, Roi -> 10
+
 - Carte As ->
     - 11 si en ajoutant 11 à la main, le score est inférieur ou égal à 21.
     - 1 si en ajoutant 11, le score dépasse 21.
@@ -38,8 +41,8 @@ Le blackjack oppose le joueur et le dealer (maitre du jeu). L'objectif pour le j
 - Le joueur appuie sur un bouton pour démarrer la partie.
 - Le programme distribue deux cartes faces visibles au joueur.
 - Le programme distribue une carte face visible au dealer.
-- Les points du joueur et du dealer sont calculés et affichés au joueur.
-- Le joueur doit choisir entre prendre une nouvelle carte pour changer son score (A) ou s'arrêter et laisser le programme résoudre la fin de jeu (B) :
+- Les points du joueur et du dealer sont affichés au joueur.
+- Le joueur doit choisir entre prendre une nouvelle carte pour changer son score (A) ou s'arrêter et laisser le programme résoudre la fin de jeu (B) ...
 
 ## **A**. Il prend une nouvelle carte :
   - Si son score est égal à 21, la partie est finie et le joueur a gagné.
@@ -55,28 +58,26 @@ Le blackjack oppose le joueur et le dealer (maitre du jeu). L'objectif pour le j
     - Sinon, celui qui a le plus de points gagne.
 
 
-# Jeu Blackjack dans Julia
-## Jouer dans le terminal
+## Julia : jouer dans le terminal
 - Pour jouer dans le terminal : `PlayGame.game()`
 - Le joueur peut choisir son action avec les touches du claviers : Y/y et N/n.
 
 <img src="images/BlackJack_terminal.png" alt="Terminal Julia" style="width: 100%; margin-top: 10px;">
 
-## Jouer dans le notebook
+## Julia : jouer avec un notebook
 - Utilisation de plusieurs packages : Pluto, PlutoUI, Vizagrams et HypertextLiteral.
 - Aspect graphique avec des boutons *New Game*, *Hit* et *Stand*.
 - Affichage de la main selon les actions.
 <img src="images/blackjack_notebook.png" style="width: 200%; margin-top: 30px;">
 
-# Jeu Blackjack dans R
 
-## Jouer dans le terminal
+## R : jouer dans le terminal
 - Pour jouer dans le terminal, il suffit de prendre source(le_jeu.R) et run jeu() dans de terminal.
 - Le joueur peut choisir son action avec les touches du claviers : Y/y et N/n.
 
 <img src="images/BlackJack_termR.png" alt="Terminal R" style="width: 100%; margin-top: 20px;">
 
-## Jouer avec Rshiny
+## R : jouer avec Rshiny
 On peut aussi jouer avec un aspect graphique en Rshiny qui permet notamment d'avoir l'affichage de cartes.
 
 <div class="two-images">
@@ -90,7 +91,7 @@ On peut aussi jouer avec un aspect graphique en Rshiny qui permet notamment d'av
   </figure>
 </div>
 
-## Jouer avec Rshiny
+## R : jouer avec Rshiny
 <div class="two-images">
 <figure>
     <img src="images/Shiny3.png" alt="Choix Hit">
@@ -102,48 +103,59 @@ On peut aussi jouer avec un aspect graphique en Rshiny qui permet notamment d'av
 </div>
 
 
-# Jeu BlackJack dans Python
-Jouer au jeu dans le terminal :
+## Python : jouer dans le terminal
+- Pour jouer dans le terminal (avec le package PyCall) : `BlackjackPython.blackjack_python()`
+- Le joueur choisi avec les touches du clavier : Y/y et N/n.
+<img src="images/blackjack_python.png" alt="Exemple de partie" style="width:50%">
 
 # Benchmark Julia vs Python
-- On teste un algorithme classique: Le crible d'Ératosthène qui permet de trouver tous les nombres premiers inférieurs ou égaux à un entier donné N algorithme en $O(n)$.
-- On a construit la fonction en Julia et en Python (on utilisant le PyCall en Julia)
-- Voici les comparaisons du temps d'exécution pour différentes valeurs de N
+---
+## Principe
+Pour comparer les deux langages, nous comparons leurs performances en termes de temps de calcul sur une même fonction comptant plusieurs boucles. Nous voulons notamment vérifier si les calculs sont plus rapides en Julia grace au fait qu'il s'agisse d'un langage "compiled just in time" et que python soit un langage interprété (supposé plus lent).
+
+## Algorithme de test
+On test à partir du cribble d'erathostene prennant en paramètres un entier naturel n et renvoyant la liste des entiers naturels premiers strictement plus petits que n.
+
+Concrètement, on crée une liste de taille n remplie de booléens mis à true. Pour i allant de 2 à n, on regarde si les entiers j de i+1 à n sont des multiples de i, si c'est le cas on les notes comme non premiers dans la liste de booléens. Après la boucle, on renvoie les index de la liste qui sont à true.
+
+Puisqu'il s'agit de boucle for, le temps de calcul nécessaire peut rapidement augmenter.
+
+## Résultats
 
 <div class="two-images">
 <figure>
     <img src="images/benchjulia1000.png" alt="Julia pour N=1000">
-    <figcaption>Julia pour N=1000</figcaption>
+    <figcaption>Julia pour N=1,000</figcaption>
   </figure>
   <figure>
     <img src="images/benchpy1000.png" alt="Python pour N=1000">
-    <figcaption>Python pour N=1000</figcaption>
+    <figcaption>Python pour N=1,000</figcaption>
   </figure>
 </div>
 
-## 
 <div class="two-images">
 <figure>
     <img src="images/benchjulia10000.png" alt="Julia pour N=10000">
-    <figcaption>Julia pour N=10000</figcaption>
+    <figcaption>Julia pour N=10,000</figcaption>
   </figure>
   <figure>
     <img src="images/benchpy10000.png" alt="Python pour N=10000">
-    <figcaption>Python pour N=10000</figcaption>
+    <figcaption>Python pour N=10,000</figcaption>
   </figure>
 </div>
 
 <div class="two-images">
 <figure>
     <img src="images/benchjulia100000.png" alt="Julia pour N=100000">
-    <figcaption>Julia pour N=100000</figcaption>
+    <figcaption>Julia pour N=100,000</figcaption>
   </figure>
   <figure>
     <img src="images/benchpy100000.png" alt="Python pour N=100000">
-    <figcaption>Python pour N=10000</figcaption>
+    <figcaption>Python pour N=100,000</figcaption>
   </figure>
 </div>
 
+## Conclusions
 - On remarque que Julia prend toujours moins de temps que Python
 - Pour des valeurs de N relativement petite, la différence peur être considérée négligeable
 - Alors que pour de grandes valeurs de N, on remarque une différence de plus d'une minute.

@@ -29,7 +29,7 @@ end
 function help()
     println("Fonction utiles :")
     println(" ")
-    println("1. Blackjack Julia :")
+    println("1. Blackjack:")
     println("ProjetBlackJack.PlayGame.game(), blackjack_notebook(), BlackjackPython.blackjack_python()")
     println("")
     println("2. Benchmarck :")

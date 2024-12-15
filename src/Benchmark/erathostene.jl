@@ -7,7 +7,7 @@ py"""
 import time
 
 def cribble_erathostene(n=7):
-    liste_boolean_prime = [True for _ in range(0, n+1)]
+    liste_boolean_prime = [True for _ in range(0, n)]
     liste_boolean_prime[0] = False
     liste_boolean_prime[1] = False
     for i in range(2, n):
@@ -55,14 +55,6 @@ end
 function cribble_erathostene_julia_time(n::Int64)
     @time cribble_erathostene_julia(n)
 end
-
-# Résultats
-number = 50
-println("Julia :")
-time_julia = cribble_erathostene_julia_time(number)
-println("Python :")
-time_python = cribble_erathostene_python_time(number)
-println("For $number it took $time_python second for Python")
 
 export cribble_erathostene_python, cribble_erathostene_python_time, cribble_erathostene_julia, cribble_erathostene_julia_time
 

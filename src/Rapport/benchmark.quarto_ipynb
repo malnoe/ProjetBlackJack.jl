@@ -7,7 +7,7 @@
         "---\n",
         "title: \"Benchmark entre Pytho et Julia\"\n",
         "format: html\n",
-        "jupyter: julia-1.10\n",
+        "jupyter : julia-1.10\n",
         "---\n",
         "\n",
         "\n",
@@ -24,21 +24,16 @@
         "# Code\n",
         "\n",
         "## Python\n",
-        "Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.\n"
-      ],
-      "id": "9c77b41a"
-    },
-    {
-      "cell_type": "code",
-      "metadata": {},
-      "source": [
+        "Pour executer le code Python, on utilise  le package PyCall qui permet de coder en Python dans Julia.\n",
+        "\n",
+        "```r\n",
         "using PyCall\n",
         "\n",
         "py\"\"\"\n",
         "import time\n",
         "\n",
         "def cribble_erathostene(n=7):\n",
-        "    liste_boolean_prime = [True for _ in range(0, n+1)]\n",
+        "    liste_boolean_prime = [True for _ in range(0, n)]\n",
         "    liste_boolean_prime[0] = False\n",
         "    liste_boolean_prime[1] = False\n",
         "    for i in range(2, n):\n",
@@ -53,33 +48,19 @@
         "\n",
         "cribble_erathostene_python = py\"cribble_erathostene\"\n",
         "\n",
-        "function cribble_erathostene_julia_time(n::Int64)\n",
-        "    @time cribble_erathostene_julia(n)\n",
+        "function cribble_erathostene_python_time(n::Int64)\n",
+        "    @time cribble_erathostene_python(n)\n",
         "end\n",
         "\n",
-        "@bind n Slider(10:10:1000, show_value=true)\n",
-        "cribble_erathostene_python_time(n)"
-      ],
-      "id": "221f7c61",
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "markdown",
-      "metadata": {},
-      "source": [
-        "## Julia\n"
-      ],
-      "id": "67078eb8"
-    },
-    {
-      "cell_type": "code",
-      "metadata": {},
-      "source": [
+        "cribble_erathostene_python_time(7)\n",
+        "```\n",
+        "\n",
+        "## Julia\n",
+        "```r\n",
         "using PlutoUI\n",
         "\n",
         "function cribble_erathostene_julia(n::Int64)\n",
-        "    list_boolean_prime = ones(Bool,n+1)\n",
+        "    list_boolean_prime = ones(Bool,n)\n",
         "    list_boolean_prime[1] = false\n",
         "\n",
         "    for i in range(2,n)\n",
@@ -103,21 +84,13 @@
         "    @time cribble_erathostene_julia(n)\n",
         "end\n",
         "\n",
-        "@bind n Slider(10:10:1000, show_value=true)\n",
-        "cribble_erathostene_julia_time(n)"
-      ],
-      "id": "e077731e",
-      "execution_count": null,
-      "outputs": []
-    },
-    {
-      "cell_type": "markdown",
-      "metadata": {},
-      "source": [
+        "cribble_erathostene_julia_time(7)\n",
+        "```\n",
+        "\n",
         "# A vous de jouer\n",
-        "Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser"
+        "Après avoir installé et appelé le package ProjetBlackJack, vous pouvez utiliser `cribble_erathostene_python`, `cribble_erathostene_python_time`, `cribble_erathostene_julia`, `cribble_erathostene_julia_time` pour tester les fonctions."
       ],
-      "id": "fab9b5f8"
+      "id": "41a84800"
     }
   ],
   "metadata": {

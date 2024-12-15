@@ -1,11 +1,11 @@
 ---
-title: "Rapport projet"
+title: "Rapport du projet"
 ---
-Noms : Lancelot Ravier, Danielle El Khoury, Garance Malnoë
+**Noms** : Lancelot Ravier, Danielle El Khoury, Garance Malnoë
 
 Bienvenue sur notre rapport !
 
-Nous avons travaillé sur différents projets qui ont chacun une page dédiée :
+Nous avons travaillé sur **trois sous-projets** qui ont chacun une page dédiée :
 
 - Un [jeu de blackjack](blackjack.qmd) en Julia, Python et R jouable depuis le terminal et depuis des interfaces graphiques.
 
@@ -14,11 +14,13 @@ Nous avons travaillé sur différents projets qui ont chacun une page dédiée :
 - Un [benchmark](benchmark.qmd) entre Julia, Python et C++ à partir du cribble d'Erathostene.
 
 
-Pour mieux comprendre le processus de création, la page [journal](journal.qmd) regroupe nos réflexions tout au long du projet.
+Pour mieux comprendre le processus de création, la page [journal](Journal.qmd) regroupe nos réflexions tout au long du projet.
 
-Pour installer le package Julia : ajouter le package depuis Pkg avec l'url https://github.com/malnoe/ProjetBlackJack.jl et pour connaitre les fonctions disponible dans ce package utilisez `help()`
+- **Pour installer le package Julia** :
+Ajoutez le package depuis Pkg avec l'url *https://github.com/malnoe/ProjetBlackJack.jl*, appelez le avec `using ProjetBlackJack`. Pour connaitre les fonctions disponibles dans ce package utilisez `help()`.
 
-Pour installer le package R : Executer le code R suivant 
+- **Pour installer le package R** :
+Executez le code R suivant :
 ```r
 if (!require("devtools")) install.packages("devtools")
 devtools::install_github("da-n-ta/blackjack")

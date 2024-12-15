@@ -93,7 +93,7 @@ jeu()
 Pour lancer le shiny depuis le terminal R :
 ```r
 library(blackjack)
-shiny::runApp(system.file("shinyapp", package = "blackjack"))
+run_blackjack()
 ```
 
 # Jeu dans Python

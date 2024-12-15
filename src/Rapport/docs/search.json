@@ -11,21 +11,21 @@
     "href": "dispatching.html",
     "title": "Illustration du simple et multiple dispatching : calculateur de dérivées",
     "section": "",
-    "text": "Explication idée"
+    "text": "Dans la programmation orienté $objet et les langages fonctionnels, le dispatching détermine quelle version d’une fonction ou d’une méthode doit ètre appelée lorsqu’une fonction est éxécutée, en fonction de ses arguments ou d’autres critères. Certains langages de programmations comme Python ou R intègre le simple dispatching, tandis que d’autres langages intègrent une téchnique plus avancée : le multiple dispatching. Dans les deux exemples ci-dessous (en R puis en Julia), nous allons définir une fonction qui effectue une multiplication matricielle si les entrées sont des matrices, et une multiplication élément par élément si les entrées sont des vecteurs. Asini, nous allons pouvoir analyser les différences de code entre les deux langages."
   },
   {
     "objectID": "dispatching.html#r",
     "href": "dispatching.html#r",
     "title": "Illustration du simple et multiple dispatching : calculateur de dérivées",
     "section": "R",
-    "text": "R"
+    "text": "R\nDans le cas du rajout d’une nouvelle méthode (ici : multiplicaion entre une matrice et un scalaire), il faut modifier la méthode multiply.matrix pour inclure ce nouveau cas dans la fonction déjà créée.\n# Mise à jour de la méthode pour les matrices\nmultiply.matrix &lt;- function(x, y) {\n  if (is.matrix(x) && is.matrix(y)) {\n    return(x %*% y)  # Multiplication matricielle\n  } else if (is.matrix(x) && is.numeric(y) && length(y) == 1) {\n    return(x * y)  # Multiplication par un scalaire\n  } else if (is.matrix(x) && is.numeric(y)) {\n    return(x * y)  # Multiplication élément par élément (vecteur)\n  } else {\n    stop(\"Invalid types for matrix multiplication\")\n  }\n}\nCette méthode d’ajout rajoute de la compléxité car cela nécessité de détecter manuellement que y est un scalaire, rendant le code plus compliqué. Aussi, la méthode initiale est modifiée, pouvant induire, dans des cas plus complèxes, à des ubgs si certaines conditions se chevauchent ou dans le cas d’une erreur dans le code écrit. Avec les conditions imbriquées de plus en plus complèces, le code devient difficile à comprendre et à maintenir."
   },
   {
     "objectID": "dispatching.html#julia",
     "href": "dispatching.html#julia",
     "title": "Illustration du simple et multiple dispatching : calculateur de dérivées",
     "section": "Julia",
-    "text": "Julia"
+    "text": "Julia\nDans le cas d’un langage incluant le multiple dispatching colle Julia, ajouter la multiplication par un scalaire devient beaucoup plus simple : il suffit de créer une nouvelle méthode indépendante des autres méthodes créées.\n# Création de la méthode pour matrice et scalaire\nfunction multiply(x::Matrix, y::Number)\n    return x .* y  # Multiplication par un scalaire\nend\nAinsi, le mjultiple dispatching permet, sous des langages comme Julia, d’ajouter facilement de nouvelles méthodes sans modifier le code existant. Aussi, chaque méthode étant séparée de manière explicite, la lisibilité est améliorée, le code devient plus facile à lire et à compredre. Enfin, les compilateurs peuvent optimiser le dispatching pour générer du code à chaque combinaison de types. Conclusion"
   },
   {
     "objectID": "benchmark.html",
@@ -102,7 +102,7 @@
     "href": "blackjack.html#jeu-avec-rshiny",
     "title": "Projet jeu du blackjack",
     "section": "Jeu avec RShiny",
-    "text": "Jeu avec RShiny\n\nStructure\n\nFichier shinyapp.r : En utilisant comme source le fichier Cartes_et_Deck.R, initialiser le jeu, décrire un path pour les images à utiliser dans le jeu, créer des boutons pour les actions du joueur (“New Game”, “Hit”, “Stand”), afficher une console intéractive pour pouvoir jouer.\n\n\n\nA vous de jouer !\nPour lancer le shiny depuis le terminal R :\nlibrary(blackjack)\nshiny::runApp(system.file(\"shinyapp\", package = \"blackjack\"))"
+    "text": "Jeu avec RShiny\n\nStructure\n\nFichier shinyapp.r : En utilisant comme source le fichier Cartes_et_Deck.R, initialiser le jeu, décrire un path pour les images à utiliser dans le jeu, créer des boutons pour les actions du joueur (“New Game”, “Hit”, “Stand”), afficher une console intéractive pour pouvoir jouer.\n\n\n\nA vous de jouer !\nPour lancer le shiny depuis le terminal R :\nlibrary(blackjack)\nrun_blackjack()"
   },
   {
     "objectID": "blackjack.html#jeu-dans-le-terminal-2",
@@ -116,6 +116,6 @@
     "href": "index.html",
     "title": "Rapport du projet",
     "section": "",
-    "text": "Noms : Lancelot Ravier, Danielle El Khoury, Garance Malnoë\nBienvenue sur notre rapport !\nNous avons travaillé sur trois sous-projets qui ont chacun une page dédiée :\n\nUn jeu de blackjack en Julia, Python et R jouable depuis le terminal et depuis des interfaces graphiques.\nUn calculateur de dérivée en Julia et R, pour mettre en évidence l’utilité du multiple-dispatching de Julia.\nUn benchmark entre Julia, Python et C++ à partir du cribble d’Erathostene.\n\nPour mieux comprendre le processus de création, la page journal regroupe nos réflexions tout au long du projet.\n\nPour installer le package Julia : Ajoutez le package depuis Pkg avec l’url https://github.com/malnoe/ProjetBlackJack.jl et pour connaitre les fonctions disponible dans ce package utilisez help().\nPour installer le package R : Executez le code R suivant :\n\nif (!require(\"devtools\")) install.packages(\"devtools\")\ndevtools::install_github(\"da-n-ta/blackjack\")"
+    "text": "Noms : Lancelot Ravier, Danielle El Khoury, Garance Malnoë\nBienvenue sur notre rapport !\nNous avons travaillé sur trois sous-projets qui ont chacun une page dédiée :\n\nUn jeu de blackjack en Julia, Python et R jouable depuis le terminal et depuis des interfaces graphiques.\nUn calculateur de dérivée en Julia et R, pour mettre en évidence l’utilité du multiple-dispatching de Julia.\nUn benchmark entre Julia, Python et C++ à partir du cribble d’Erathostene.\n\nPour mieux comprendre le processus de création, la page journal regroupe nos réflexions tout au long du projet.\n\nPour installer le package Julia : Ajoutez le package depuis Pkg avec l’url https://github.com/malnoe/ProjetBlackJack.jl, appelez le avec using ProjetBlackJack. Pour connaitre les fonctions disponibles dans ce package utilisez help().\nPour installer le package R : Executez le code R suivant :\n\nif (!require(\"devtools\")) install.packages(\"devtools\")\ndevtools::install_github(\"da-n-ta/blackjack\")"
   }
 ]

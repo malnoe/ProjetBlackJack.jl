@@ -187,7 +187,7 @@ On remarque également que Python nécessite plus d'allocations que Julia.
 
 # Troisième projet : Single vs Multiple dispatching
 ## Dispatching
-- Le dispatche est u nprocessus de sélection et d'exécution dynamique ou statique de la méthode ou fonction appropriée en fonction du type, du contexte ou des arguments de l'appel.
+- Le dispatche est un processus de sélection et d'exécution dynamique ou statique de la méthode ou fonction appropriée en fonction du type, du contexte ou des arguments de l'appel.
 
 <img src="images/dispatching.gif" alt="dispatching" width="1000" height="400">
 

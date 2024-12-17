@@ -119,7 +119,7 @@ function Vizagrams.draw(game::Game)
 
     full_text = text_player_hand * " ($hand_value_player) " * "\n" * text_dealer_hand * " ($hand_value_dealer) " * "\n" * text_end_game
   
-    x = S(:__id => :"test_2", :fill => :green)Circle()+TextMark(text=full_text, anchor=:c, fontsize=5)
+    x = (S(:__id => :"test_2", :fill => :green)Circle()+TextMark(text=full_text, anchor=:c, fontsize=50))
     return draw(x, height=10)
 end
 

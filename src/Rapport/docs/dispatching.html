@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -124,13 +158,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#principe" id="toc-principe" class="nav-link active" data-scroll-target="#principe">Principe</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a>
+  <li><a href="#le-dispatching-quest-ce-que-cest" id="toc-le-dispatching-quest-ce-que-cest" class="nav-link active" data-scroll-target="#le-dispatching-quest-ce-que-cest">Le dispatching : qu’est ce que c’est ?</a></li>
+  <li><a href="#simple-dispatching-r" id="toc-simple-dispatching-r" class="nav-link" data-scroll-target="#simple-dispatching-r">Simple dispatching (R)</a></li>
+  <li><a href="#multiple-dispatching-julia" id="toc-multiple-dispatching-julia" class="nav-link" data-scroll-target="#multiple-dispatching-julia">Multiple dispatching (Julia)</a></li>
+  <li><a href="#comparaison-de-lajout-dune-modalité-dans-les-deux" id="toc-comparaison-de-lajout-dune-modalité-dans-les-deux" class="nav-link" data-scroll-target="#comparaison-de-lajout-dune-modalité-dans-les-deux">Comparaison de l’ajout d’une modalité dans les deux</a>
   <ul class="collapse">
   <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
   <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
   </ul></li>
-  <li><a href="#remarques" id="toc-remarques" class="nav-link" data-scroll-target="#remarques">Remarques</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -156,21 +192,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="principe" class="level1">
-<h1>Principe</h1>
-<p>Explication idée</p>
+<section id="le-dispatching-quest-ce-que-cest" class="level1">
+<h1>Le dispatching : qu’est ce que c’est ?</h1>
+<p>Dans la programmation orienté $<em>objet</em> et les langages <em>fonctionnels</em>, le <strong>dispatching</strong> détermine <strong>quelle version d’une fonction ou d’une méthode doit ètre appelée</strong> lorsqu’une fonction est éxécutée, en fonction de ses arguments ou d’autres critères. Certains langages de programmations comme <strong>Python</strong> ou <strong>R</strong> intègre le <strong>simple dispatching</strong>, tandis que d’autres langages intègrent une téchnique plus avancée : le <strong>multiple dispatching</strong>. Dans les deux exemples ci-dessous (en R puis en Julia), nous allons définir une fonction qui effectue une multiplication matricielle si les entrées sont des matrices, et une multiplication élément par élément si les entrées sont des vecteurs. Asini, nous allons pouvoir analyser les différences de code entre les deux langages.</p>
 </section>
-<section id="code" class="level1">
-<h1>Code</h1>
+<section id="simple-dispatching-r" class="level1">
+<h1>Simple dispatching (R)</h1>
+<p>Le <strong>simple dispatching</strong> repose uniquement sur le <strong>premier argument</strong> de la fonction. L’execution de la fonction nécessite des verifications manuelles dans chaque méthode, affectant fortement le coût d’execution du code (poussé davantage par le caractère interprété des langages comme R et python). L’ajout de nouveaux cas (exemple 2) nécecssite de modifier le code existant, créeant un risque d’introduire des erreurs, rends le code moins maintenable et peut nécessiter des tests supplémentaires pour s’assurer que les modifications n’ont pas modifié les comportements existants.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>multiply <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">UseMethod</span>(<span class="st">"multiply"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode pour les matrices</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>multiply.matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.matrix</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.matrix</span>(y)) { <span class="co"># Etape de verificatiopn</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">%*%</span> y)  <span class="co"># Multiplication matricielle</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.matrix</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(y)) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">*</span> y)  <span class="co"># Multiplication élément par élément</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Invalid types for matrix multiplication"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode pour les vecteurs</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>multiply.numeric <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(y)) {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">*</span> y)  <span class="co"># Multiplication élément par élément</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.numeric</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.matrix</span>(y)) {</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">*</span> y)  <span class="co"># Multiplication élément par élément</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Invalid types for numeric multiplication"</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="multiple-dispatching-julia" class="level1">
+<h1>Multiple dispatching (Julia)</h1>
+<p>Le multiple dispatching permet de définir des méthodes spécifiques pour chaque combinaisons de types d’arguments pour une fonction donnée, sans vérifications manuelles supplémentaires. En Julia, le multiple dispatching permet de définir des méthodes spécifiques pour chaque combinaison de types d’arguments, sans vérifications manuelles supplémentaires.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode pour deux matrices</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> <span class="fu">multiply</span>(x<span class="sc">::</span>Matrix, y<span class="sc">::</span>Matrix)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    return x <span class="sc">*</span> y  <span class="co"># Multiplication matricielle</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>end</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode pour deux vecteurs</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> <span class="fu">multiply</span>(x<span class="sc">::</span>Vector, y<span class="sc">::</span>Vector)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    return x .<span class="sc">*</span> y  <span class="co"># Multiplication élément par élément</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>end</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode pour une matrice et un vecteur</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> <span class="fu">multiply</span>(x<span class="sc">::</span>Matrix, y<span class="sc">::</span>Vector)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    return x .<span class="sc">*</span> y  <span class="co"># Multiplication élément par élément</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>end</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Méthode pour un vecteur et une matrice</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> <span class="fu">multiply</span>(x<span class="sc">::</span>Vector, y<span class="sc">::</span>Matrix)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    return x .<span class="sc">*</span> y  <span class="co"># Multiplication élément par élément</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Chaque combinaison de types est une méthode distincte. Il y’a une séparation claire entre les comportements par types. L’ajout d’une nouvelle méthode est indépendante des autres, et Julia génère du code natif pour chaque méthode.</p>
+</section>
+<section id="comparaison-de-lajout-dune-modalité-dans-les-deux" class="level1">
+<h1>Comparaison de l’ajout d’une modalité dans les deux</h1>
 <section id="r" class="level2">
 <h2 class="anchored" data-anchor-id="r">R</h2>
+<p>Dans le cas du rajout d’une nouvelle méthode (ici : multiplicaion entre une matrice et un scalaire), il faut modifier la méthode multiply.matrix pour inclure ce nouveau cas dans la fonction déjà créée.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mise à jour de la méthode pour les matrices</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>multiply.matrix <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.matrix</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.matrix</span>(y)) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">%*%</span> y)  <span class="co"># Multiplication matricielle</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.matrix</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(y) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(y) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">*</span> y)  <span class="co"># Multiplication par un scalaire</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.matrix</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">is.numeric</span>(y)) {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x <span class="sc">*</span> y)  <span class="co"># Multiplication élément par élément (vecteur)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Invalid types for matrix multiplication"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cette méthode d’ajout rajoute de la compléxité car cela nécessité de détecter manuellement que y est un scalaire, rendant le code plus compliqué. Aussi, la méthode initiale est modifiée, pouvant induire, dans des cas plus complèxes, à des ubgs si certaines conditions se chevauchent ou dans le cas d’une erreur dans le code écrit. Avec les conditions imbriquées de plus en plus complèces, le code devient difficile à comprendre et à maintenir.</p>
 </section>
 <section id="julia" class="level2">
 <h2 class="anchored" data-anchor-id="julia">Julia</h2>
+<p>Dans le cas d’un langage incluant le multiple dispatching colle Julia, ajouter la multiplication par un scalaire devient beaucoup plus simple : il suffit de créer une nouvelle méthode indépendante des autres méthodes créées.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de la méthode pour matrice et scalaire</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> <span class="fu">multiply</span>(x<span class="sc">::</span>Matrix, y<span class="sc">::</span>Number)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    return x .<span class="sc">*</span> y  <span class="co"># Multiplication par un scalaire</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ainsi, le mjultiple dispatching permet, sous des langages comme Julia, d’ajouter facilement de nouvelles méthodes sans modifier le code existant. Aussi, chaque méthode étant séparée de manière explicite, la lisibilité est améliorée, le code devient plus facile à lire et à compredre. Enfin, les compilateurs peuvent optimiser le dispatching pour générer du code à chaque combinaison de types. Conclusion</p>
 </section>
 </section>
-<section id="remarques" class="level1">
-<h1>Remarques</h1>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>Pour des langages incluant le simple dispatching comme R, gérer des cas supplémentaires devient rapidement complexe et illisible. Pour les langages comme Julia, le multiple dispatching permet d’ajouter facilement de nouveaux comportements pour des combinaisons de types, sans toucher au code existant. Cela rend Julia et les autres langages incluant le multiple dispatching à la fois plus performant, plus clair, et plus extensible.</p>
 
 
 </section>

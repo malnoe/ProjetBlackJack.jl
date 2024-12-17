@@ -86,7 +86,7 @@ function turn!(game,player_action)
 end
 
 function Vizagrams.draw(game::Game)
-    text_player_hand = "The player's hand :"
+    text_player_hand = "The player's hand : "
     for card in game.player_hand.cards
         rank = card.rank
         suit = card.suit
@@ -94,7 +94,7 @@ function Vizagrams.draw(game::Game)
     end
     hand_value_player = hand_value(game.player_hand)
 
-    text_dealer_hand = "The dealer's hand :"
+    text_dealer_hand = "The dealer's hand : "
     for card in game.dealer_hand.cards
         rank = card.rank
         suit = card.suit
@@ -117,7 +117,7 @@ function Vizagrams.draw(game::Game)
         text_end_game = "Choose an action!"
     end
 
-    full_text = text_player_hand * "\n" * " ($hand_value_player) " * "\n" * text_dealer_hand * "\n" * " ($hand_value_dealer) " * "\n" * text_end_game
+    full_text = text_player_hand * " ($hand_value_player) \n" * text_dealer_hand * " ($hand_value_dealer) \n" * text_end_game
 
     d = TextMark(text=full_text)
     return draw(d, height=16)

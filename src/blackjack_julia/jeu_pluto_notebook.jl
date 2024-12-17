@@ -124,8 +124,8 @@ function Vizagrams.draw(game::Game)
 
 
   
-    d = TextMark(text=full_text, anchor=:l)
-    return draw(d, height=16, anchor=:l)
+    d = TextMark(text=full_text, anchor=:e)
+    return d
 end
 
 function interaction()

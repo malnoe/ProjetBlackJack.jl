@@ -118,11 +118,10 @@ function Vizagrams.draw(game::Game)
     end
 
     full_text = text_player_hand * " ($hand_value_player) " * "\n" * text_dealer_hand * " ($hand_value_dealer) " * "\n" * text_end_game
-    html"""
-    <div style="color:red; font-size:20px; font-family:sans-serif; white-space:pre;">
-        $full_text
-    </div>
-    """
+    fig = Figure()
+    ax = Axis(fig[1,1], visible=false)
+    text!(ax, full_text, position=(0.5,0.5), align = (:center,:center), fontsize=10, color=:red)
+    fig
 end
 
 function interaction()

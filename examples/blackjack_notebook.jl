@@ -20,7 +20,7 @@ end
 begin
 	import Pkg
 	Pkg.activate("..")
-	using Vizagrams, PlutoUI, HypertextLiteral
+	using Vizagrams, PlutoUI, HypertextLiteral, CairoMakie
 	using ProjetBlackJack
 	game = initialize_game()
 	nothing

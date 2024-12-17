@@ -3,8 +3,6 @@ using .CardDefinitions
 include("deck.jl")
 using .DeckDefinitions
 # import Pluto; Pluto.run()
-import Markdown
-using Markdown
 
 mutable struct Game
     blackjack_deck::Deck

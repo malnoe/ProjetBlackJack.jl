@@ -119,8 +119,8 @@ function Vizagrams.draw(game::Game)
 
     full_text = text_player_hand * " ($hand_value_player) " * "\n" * text_dealer_hand * " ($hand_value_dealer) " * "\n" * text_end_game
   
-    d = TextMark(text=full_text, anchor=:c, fontsize=0.2)
-    return draw(d)
+    d = TextMark(text=full_text, anchor=:c)
+    return draw(d, height=5)
 end
 
 function interaction()

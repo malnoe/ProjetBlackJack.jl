@@ -117,14 +117,15 @@ function Vizagrams.draw(game::Game)
         text_end_game = "Choose an action!"
     end
 
-    full_text = string(text_player_hand, " (", hand_value_player, ")\n",
-                   text_dealer_hand, " (", hand_value_dealer, ")\n",
-                   text_end_game)
+    full_text = text_player_hand * " ($hand_value_player) " * "\n" *
+		text_dealer_hand * " ($hand_value_dealer) " * "\n" *
+		text_end_game
+
 
 
   
     d = TextMark(text=full_text)
-    return draw(d, height=16, anchor=:c)
+    return draw(d, height=16)
 end
 
 function interaction()

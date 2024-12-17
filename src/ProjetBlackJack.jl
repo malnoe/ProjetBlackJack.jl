@@ -35,8 +35,6 @@ function help()
     println("2. Benchmarck :")
     println(" ProjetBlackJack.Benchmark.cribble_erathostene_python(n),  ProjetBlackJack.Benchmark.cribble_erathostene_python_time(n),  ProjetBlackJack.Benchmark.cribble_erathostene_julia(n),  ProjetBlackJack.Benchmark.cribble_erathostene_julia_time(n)")
     println("")
-    println("3. Single vs Multiple dispatching :")
-    println(".......")
 end
 
 end

@@ -66,11 +66,7 @@ begin
 	draw(game)
 end
 
-# ╔═╡ 412f7f86-e375-4be5-856a-05ab7b16c93e
-
-
 # ╔═╡ Cell order:
 # ╠═608ff810-a0d9-11ef-2668-79a348c1b5b2
 # ╠═f87bdb7a-3fd2-4c65-ba38-54cdafdc994f
 # ╠═37dc8fd4-ec5b-40a8-a01b-87e2cac657d7
-# ╠═412f7f86-e375-4be5-856a-05ab7b16c93e

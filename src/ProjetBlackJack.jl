@@ -1,6 +1,6 @@
 module ProjetBlackJack
 
-using Vizagrams, Pluto, PlutoUI, HypertextLiteral, Downloads, PyCall, CairoMakie
+using Vizagrams, Pluto, PlutoUI, HypertextLiteral, Downloads, PyCall
 
 export help, 
 Game, initialize_game, new!, turn!, end_game!, interaction, 
